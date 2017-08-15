@@ -1,0 +1,35 @@
+@import url('https://fonts.googleapis.com/css?family=Muli');
+
+.profilebox {
+  overflow-wrap: break-word;
+  font-family: 'Muli', sans-serif;
+  padding: 0.5rem;
+  border: solid 0.1rem black;
+  min-width: 50vw;
+  max-width: 60vw;
+  border-radius: 5%;
+  display: flex;
+  flex-flow: wrap column;
+  justify-content: center;
+  text-align: center;
+}
+
+.profilebox > * {
+  padding: 0.5rem 0.25rem
+}
+
+.profilebox > h2 {
+  font-size: 1.5rem;
+  font-weight: 800;
+}
+
+.profilebox > h3 {
+  font-size: 1.1rem;
+}
+
+@media (min-width: 640px) {
+  .profilebox {
+    min-width: 25vw;
+    max-width: 35vw;
+  }
+}
