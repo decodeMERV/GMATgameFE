@@ -4,8 +4,9 @@
   display: inline-block;
   border-radius: 8%;
   overflow-wrap: break-word;
-  font-family: 'Anton', sans-serif;
+  font-family: 'Arial', sans-serif;
   max-height: 20vh;
   padding: 0.2rem;
   text-align: center;
+  width:45%;
 }

@@ -1,0 +1,10 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+.answer {
+    text-align: left;
+    font-family: 'Roboto', sans-serif;
+    border: solid 0.1rem black;
+    border-radius: 25px;
+    padding: 0.7rem;
+    width:90%
+}

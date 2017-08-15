@@ -53,3 +53,7 @@ blockquote, q {
   justify-content: center;
   align-items: center;
 }
+
+.scoreBoard{
+  display:flex;
+}

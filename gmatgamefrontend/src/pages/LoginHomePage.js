@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import './Login.css';
+import './LoginHomePage.css';
 
 export default class LoginHomePage extends Component {
 
