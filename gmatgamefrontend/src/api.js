@@ -3,6 +3,7 @@ import { API_HOST } from './config'
 
 class Api {
 
+
   requestLogin = (email, password) => (
     superagent
       .post(`${API_HOST}/auth/sessions`)
@@ -10,8 +11,6 @@ class Api {
       .send({ email, password })
   )
 
-
-  // PUT RESPPNSE TOEKN ABOVE
 
   signup = (email, password, username, interests) => (
 
@@ -21,6 +20,14 @@ class Api {
       .send({ email, password, username, interests })
   )
 
+  requestQuestion = (currentLevel, isCorrect) => {
+    return superagent
+      .get(`${API_HOST}/nextQuestion?=${currentLevel}&isCorrect=${isCorrect}`)
+      .set('Content-Type', 'application/json')
+  }
+
 }
+
+
 
 export default new Api();
