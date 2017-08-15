@@ -12,6 +12,7 @@ export default (props) => {
 
                 }}
             className="answer"
+            onClick={props.onClick}
         >
             {props.answerText}
         </div>
