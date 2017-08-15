@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import DescriptiveTextBox from './elements/DescriptiveTextBox';
 import ProfileBox from './elements/ProfileBox';
+import Question from './elements/Question';
 
 import './App.css';
 
@@ -11,7 +12,11 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <DescriptiveTextBox theText={"Score:\n250"} bgColor="darkblue" fontSize="2rem" color="black"/>
+        <DescriptiveTextBox theText={"Score:\n250"} bgColor="babyblue" fontSize="2rem" color="black"/>
+        <DescriptiveTextBox theText={"Score:\n250"} bgColor="yellow" fontSize="2rem" color="black"/>
+        <DescriptiveTextBox theText={"Score:\n250"} bgColor="orange" fontSize="2rem" color="black"/>
+        <br/>
+        <Question questionText={sampleText} fontSize="1.25rem"/>
         <br/>
         <ProfileBox name="Athena, God of War" contact="Atlantis@underwater.com" aboutMe={sampleText}/>
       </div>

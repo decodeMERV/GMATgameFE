@@ -46,3 +46,10 @@ q:before, q:after {
 blockquote, q {
   quotes: "" "";
 }
+
+.App {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  align-items: center;
+}
