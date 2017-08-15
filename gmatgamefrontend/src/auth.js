@@ -1,0 +1,35 @@
+import api from './api';
+
+export default {
+  login(email, pass) {
+    if (localStorage.token) {
+      throw new Error('Already logged in')
+    }
+    else {
+      return api.requestLogin(email, pass)
+        .then(res => localStorage.token = res.body.token)
+    }
+  },
+
+  getToken() {
+    return localStorage.token
+  },
+
+  logout() {
+    return api.requestLogout(localStorage.token)
+      .then(res => delete localStorage.token)
+  },
+
+  isLoggedIn() {
+    return !!localStorage.token
+  },
+
+  getCurrentLoggedInUser(token) {
+    return api.getCurrentUser(token);
+  },
+
+  signUp(email, pass){
+    return api.requestSignUp(email, pass);
+  }
+}
+

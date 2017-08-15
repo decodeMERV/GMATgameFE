@@ -3,8 +3,10 @@ import DescriptiveTextBox from './elements/DescriptiveTextBox';
 import ProfileBox from './elements/ProfileBox';
 import Question from './elements/Question';
 import Answer from './elements/Answer';
+import SignUp from './pages/SignUp';
 
 import './App.css';
+import LoginHomePage from "./pages/LoginHomePage";
 
 const sampleText = `Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur molestias, temporibus! A architecto atque autem eaque eligendi error, ex fuga ipsam nemo neque nesciunt odit officia praesentium, sit tempore vel! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur molestias, temporibus! A architecto atque autem eaque eligendi error, ex fuga ipsam nemo neque nesciunt odit officia praesentium, sit tempore vel!`;
 const sampleText2 = `Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur molestias, temporibus!`;
@@ -27,6 +29,10 @@ class App extends Component {
         <Answer answerText={'Answer '+sampleText2} fontSize="0.9rem"/>
         <br/>
         <ProfileBox name="Athena, God of War" contact="Atlantis@underwater.com" aboutMe={sampleText}/>
+        <br/>
+        <LoginHomePage />
+        <br/>
+        <SignUp />
       </div>
     );
   }

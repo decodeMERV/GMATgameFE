@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import { Link } from 'react-router';
 import './LoginHomePage.css';
 import auth from '../auth';
 
@@ -13,12 +14,6 @@ export default class LoginHomePage extends Component {
     this.state={}
   }
 
-  // routeToSignUp = () => {
-  //
-  //   this.props.router.push('/signup'));
-  //
-  //
-  // }
 
   _handleLogin = () => {
     // deep destructuring equivalent to (let email = this.refs.email.value;)
@@ -51,8 +46,8 @@ export default class LoginHomePage extends Component {
         <input type="password" ref="password"
                onKeyUp={this._handleTyping}
         />
-        <button className="logonbutton" onClick={this._handleLogin}>login</button>
-          <button className="signupbutton" onClick={this.routeToSignUp}>Create An Account</button>
+        <button className="logonbutton" onClick={this._handleLogin}>Login</button>
+          <Link to="/SignUp" className="signupbutton">Create an Account</Link>
         <h3>{this.state.theError}</h3>
       </div>
             )
