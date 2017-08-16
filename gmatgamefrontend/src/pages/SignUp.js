@@ -19,7 +19,7 @@ _handleSignUp = () => {
   // deep destructuring equivalent to (let email = this.refs.email.value;)
   let { email: {value: email}, password: {value: password}, username: {value:username}, interests: {value:interests}} = this.refs;
   if (email && password && username && interests) {
-    auth.signup(email, password, username, interests)
+    auth.signUp(email, password, username, interests)
       .then(res => this.props.router.push('/'))
       .catch( () => this.setState({theError : "Wrong username or password"}) )
   }

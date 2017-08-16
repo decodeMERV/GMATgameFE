@@ -12,18 +12,25 @@ class Api {
   )
 
 
-  signup = (email, password, username, interests) => (
+  signUp = (email, password, username, interests) => (
 
     superagent
-      .post(`${API_HOST}/auth/sessions`)
+      .post(`${API_HOST}/auth/users`)
       .set('Content-Type', 'application/json')
       .send({ email, password, username, interests })
   )
 
   requestQuestion = (currentLevel, isCorrect) => {
-    return superagent
-      .get(`${API_HOST}/nextQuestion?=${currentLevel}&isCorrect=${isCorrect}`)
-      .set('Content-Type', 'application/json')
+    if (currentLevel !== undefined && isCorrect !== undefined) {
+      return superagent
+        .get(`${API_HOST}/questions/nextQuestion?currentLevel=${currentLevel}&isCorrect=${isCorrect}`)
+        .set('Content-Type', 'application/json')
+    }
+    else {
+      return superagent
+        .get(`${API_HOST}/questions/nextQuestion`)
+        .set('Content-Type', 'application/json')
+    }
   }
 
   getCurrentUser = (token) => {

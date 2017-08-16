@@ -28,8 +28,8 @@ export default {
     return api.getCurrentUser(token);
   },
 
-  signUp(email, pass){
-    return api.requestSignUp(email, pass);
+  signUp(email, password, username, interests){
+    return api.signUp(email, password, username, interests);
   }
 }
 

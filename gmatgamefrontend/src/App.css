@@ -47,13 +47,22 @@ blockquote, q {
   quotes: "" "";
 }
 
-.App {
+.App-navbar {
   display: flex;
-  flex-flow: column wrap;
-  justify-content: center;
-  align-items: center;
+  flex-flow: row wrap;
 }
 
-.scoreBoard{
-  display:flex;
+.play-button{
+  text-decoration: none;
+  font-size: 1.5rem;
+  color: #184f0e;
+  background-color: lavender;
+}
+
+.App-navbar__title {
+  margin: 0;
+  color: #273b72;
+  font-size: 1.5rem;
+  text-decoration: none;
+  background-color: lavender;
 }
