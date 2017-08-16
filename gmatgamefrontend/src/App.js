@@ -41,9 +41,12 @@ class App extends Component {
             auth.isLoggedIn() ?
             <DescriptiveTextBox
               onClick={() => {
-                auth.logout();
-                this.setState({avatarUrl: undefined, username:undefined, isLoggedIn: false})}
-              }
+                auth.logout()
+                  .then( () => {
+                    this.setState({avatarUrl: undefined, username:undefined, isLoggedIn: false});
+                    this.props.router.push('/');
+                  })
+              }}
               theText="LOGOUT"
             />
               :
