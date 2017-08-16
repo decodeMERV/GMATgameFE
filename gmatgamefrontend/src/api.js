@@ -26,6 +26,12 @@ class Api {
       .set('Content-Type', 'application/json')
   }
 
+  getCurrentUser = (token) => {
+    return superagent
+      .get(`${API_HOST}/auth/me`)
+      .set('Authorization', `token ${token}`)
+  }
+
 }
 
 

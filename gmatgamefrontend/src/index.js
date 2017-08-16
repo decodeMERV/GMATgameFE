@@ -5,6 +5,7 @@ import App from './App';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 import LoginHomePage from "./pages/LoginHomePage";
 import PlayGame from "./pages/PlayGame";
+import UserProfile from "./pages/UserProfile";
 
 const routes = (
   <Router history={browserHistory}>
@@ -12,7 +13,7 @@ const routes = (
       <IndexRoute component={LoginHomePage}/>
       <Route path="/play" component={PlayGame}/>
       {/*<Route path="/signup" component={SignUp}/>*/}
-      {/*<Route path="/dashboard" component={UserProfile}/>*/}
+      <Route path="/dashboard" component={UserProfile}/>
     </Route>
   </Router>
 )

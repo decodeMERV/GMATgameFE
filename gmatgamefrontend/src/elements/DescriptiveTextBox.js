@@ -6,11 +6,13 @@ export default (props) => {
         <div
           style=
           {{
-            backgroundColor: props.bgColor ? props.bgColor : "black",
-            color : props.color ? props.color : "darkgray",
-            fontSize : props.fontSize ? props.fontSize : "1rem"
+            backgroundColor: props.bgColor ? props.bgColor : "lightgray",
+            color : props.color ? props.color : "black",
+            fontSize : props.fontSize ? props.fontSize : "1rem",
+            width : props.width ? props.width : "30%"
           }}
           className="textbox"
+          onClick={props.onClick}
         >
           <p>{props.theText}</p>
         </div>

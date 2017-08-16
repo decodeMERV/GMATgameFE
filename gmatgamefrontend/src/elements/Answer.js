@@ -8,7 +8,7 @@ export default (props) => {
                 {{
                     backgroundColor: props.bgColor ? props.bgColor : "lightgray",
                     color : props.color ? props.color : "black",
-                    fontSize : props.fontSize ? props.fontSize : "1rem"
+                    fontSize : props.fontSize ? props.fontSize : "1rem",
 
                 }}
             className="answer"
@@ -18,3 +18,7 @@ export default (props) => {
         </div>
     );
 }
+
+// click on answer, true or false
+// prevent other clicks
+// show next, onclick of that button will fire off to that api call
