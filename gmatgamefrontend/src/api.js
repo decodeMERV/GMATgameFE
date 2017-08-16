@@ -12,6 +12,13 @@ class Api {
   )
 
 
+  requestLogout = (token) => (
+    superagent
+      .delete(`${API_HOST}/auth/sessions`)
+      .set('Content-Type', 'application/json')
+      .set('Authorization', `token ${token}`)
+  )
+
   signUp = (email, password, username, interests) => (
 
     superagent

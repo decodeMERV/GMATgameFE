@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router';
 import './App.css';
 import auth from './auth.js';
+import DescriptiveTextBox from './elements/DescriptiveTextBox';
 
 class App extends Component {
   constructor() {
@@ -36,8 +37,20 @@ class App extends Component {
           <Link to="/dashboard">
             <img src={this.state.avatarUrl} style={{borderRadius:"50%", width:"2rem", backgroundColor:"black"}}/>
           </Link>
+          {
+            auth.isLoggedIn() ?
+            <DescriptiveTextBox
+              onClick={() => {
+                auth.logout();
+                this.setState({avatarUrl: undefined, username:undefined, isLoggedIn: false})}
+              }
+              theText="LOGOUT"
+            />
+              :
+            null
+          }
         </div>
-        {this.props.children}
+        {React.cloneElement(this.props.children, {logOutProp : this.state.isLoggedIn} )}
 
       </div>
     );

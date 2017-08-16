@@ -25,7 +25,19 @@ export default class UserProfile extends Component {
       })
   }
 
-  render(){
+  componentDidUpdate(prevProps, prevState) {
+    if (this.props.logOutProp !== prevProps.logOutProp){
+      this.setState({
+        username : "",
+        avatarUrl : "",
+        interests : "",
+        email: ""
+      })
+    }
+  }
+
+   render(){
+    console.log("REDNER")
     return (
       <div className="profile-container">
         <img src={this.state.avatarUrl} alt="gravatar" style={{borderRadius:"50%"}}/>
