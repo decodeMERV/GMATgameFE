@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import { Link } from 'react-router';
 import './LoginHomePage.css';
 import auth from '../auth';
-
+import ProfileBox from '../elements/ProfileBox';
 const ENTER = 13;
 
 export default class LoginHomePage extends Component {
@@ -20,7 +20,7 @@ export default class LoginHomePage extends Component {
     let { email: {value: email}, password: {value: password} } = this.refs;
     if (email && password) {
       auth.login(email, password)
-        .then(res => this.props.router.push('/'))
+        .then(res => this.props.router.push('/play'))
         .catch( () => this.setState({theError : "Wrong username or password"}) )
     }
     else {
@@ -37,7 +37,37 @@ export default class LoginHomePage extends Component {
     }
   }
 
+  componentDidMount(){
+    this.fetchUserProfile();
+  }
+
+  fetchUserProfile = () => {
+    auth.getCurrentLoggedInUser(auth.getToken())
+      .then( (res) => {
+        this.setState({
+          username : res.body.username,
+          avatarUrl : res.body.avatarUrl,
+          interests : res.body.interests,
+          email: res.body.email
+        })
+      })
+  }
+
   render() {
+
+    if (auth.isLoggedIn()){
+
+
+
+      return(
+        <div className="profile-container">
+          <img src={this.state.avatarUrl} alt="gravatar" style={{borderRadius:"50%"}}/>
+          <ProfileBox name={this.state.username} contact={this.state.email} aboutMe={this.state.interests} />
+        </div>
+      )
+    }
+
+
     return (
       <div className="login">
         <input type="text" ref="email"
