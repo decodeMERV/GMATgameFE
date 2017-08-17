@@ -38,7 +38,6 @@ class App extends Component {
           </Link>
         </div>
         {this.props.children}
-
       </div>
     );
   }

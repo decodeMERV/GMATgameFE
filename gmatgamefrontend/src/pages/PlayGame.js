@@ -79,21 +79,23 @@ export default class PlayGame extends Component {
     return(
       <div>
         <div className="description-container">
-          <DescriptiveTextBox bgColor="olive" color="white" theText={"SCORE: " + this.state.score}/>
-          <DescriptiveTextBox bgColor="blue" color="white" theText={"Category: " + this.state.cat}/>
-          <DescriptiveTextBox bgColor="red" color="white" theText={"Level: " + this.state.level}/>
+          <DescriptiveTextBox bgColor="#25a521" color="white" theText={"SCORE: " + this.state.score}/>
+          <DescriptiveTextBox bgColor="#0790f7" color="white" theText={"Category: " + this.state.cat}/>
+          <DescriptiveTextBox bgColor="#f03b3b" color="white" theText={"Level: " + this.state.level}/>
         </div>
-        { this.state.isPlayerCorrect !== undefined ?
-          <DescriptiveTextBox theText="NEXT QUESTION" onClick={this.nextQuestionFetch}/>
-          :
-          null
-        }
         <div className="game-container">
           <Question questionText={this.state.Q}/>
           {/*The below ternaries are to check if the player has yet to click on the multiple choice options, if so we assign an onClick handler, if they have we begin to color them accordingly.*/}
           {['A','B','C','D','E'].map(ans =>
             <Answer answerText={this.state[ans]} onClick={this.state.isPlayerCorrect === undefined ? () => this.calculateCorrectAns(ans) : null} bgColor={this.state.isPlayerCorrect !== undefined ? this.colorChoices(ans) : null} key={ans}/>
           )}
+          <div className="next">
+          { this.state.isPlayerCorrect !== undefined ?
+            <DescriptiveTextBox theText="NEXT QUESTION" onClick={this.nextQuestionFetch}/>
+            :
+            null
+          }
+          </div>
         </div>
       </div>
     )
