@@ -2,15 +2,20 @@ import React, { Component } from 'react';
 import { Link } from 'react-router';
 import './App.css';
 import auth from './auth.js';
+import DescriptiveTextBox from './elements/DescriptiveTextBox';
 
 class App extends Component {
   constructor() {
     super();
-    this.state = {}
+    this.state = {
+      avatarUrl: "",
+    }
   }
 
   componentDidMount(){
-    this.fetchUserProfile();
+    if (this.props.loggedIn){
+      this.fetchUserProfile();
+    }
   }
 
   fetchUserProfile = () => {
@@ -23,7 +28,19 @@ class App extends Component {
       })
   }
 
+  componentWillReceiveProps(newProps) {
+    if (newProps.loggedIn !== this.props.loggedIn) {
+      if (newProps.loggedIn) {
+        this.fetchUserProfile();
+      }
+      else {
+        this.setState({ avatarUrl: "" });
+      }
+    }
+  }
+
   render() {
+    console.log("RENDERED");
     return (
       <div className="App">
         <div className="App-navbar">
@@ -33,11 +50,29 @@ class App extends Component {
           <Link to="/play" className="play-button">
             PLAY
           </Link>
-          <Link to="/dashboard">
-            <img src={this.state.avatarUrl} style={{borderRadius:"50%", width:"2rem", backgroundColor:"black"}}/>
-          </Link>
+          {
+            auth.isLoggedIn() ?
+              <div>
+                <DescriptiveTextBox
+                  onClick={() => {
+                    auth.logout()
+                      .then( () => {
+                        this.setState({avatarUrl: "", username:undefined});
+                        this.props.router.push('/');
+                      })
+                  }}
+                  theText="LOGOUT"
+                />
+                <Link to="/dashboard">
+                  <img src={this.state.avatarUrl} alt="gravatarIcon" style={{borderRadius:"50%", maxWidth:"2rem", backgroundColor:"black"}}/>
+                </Link>
+                <DescriptiveTextBox theText={this.state.username}/>
+              </div>
+              :
+              null
+          }
         </div>
-        {this.props.children}
+        {React.cloneElement(this.props.children, {loggedInProp :this.props.loggedIn} )}
       </div>
     );
   }
