@@ -7,11 +7,15 @@ import DescriptiveTextBox from './elements/DescriptiveTextBox';
 class App extends Component {
   constructor() {
     super();
-    this.state = {}
+    this.state = {
+      avatarUrl: "",
+    }
   }
 
   componentDidMount(){
-    this.fetchUserProfile();
+    if (this.props.loggedIn){
+      this.fetchUserProfile();
+    }
   }
 
   fetchUserProfile = () => {
@@ -24,7 +28,19 @@ class App extends Component {
       })
   }
 
+  componentWillReceiveProps(newProps) {
+    if (newProps.loggedIn !== this.props.loggedIn) {
+      if (newProps.loggedIn) {
+        this.fetchUserProfile();
+      }
+      else {
+        this.setState({ avatarUrl: "" });
+      }
+    }
+  }
+
   render() {
+    console.log("RENDERED");
     return (
       <div className="App">
         <div className="App-navbar">
@@ -34,27 +50,29 @@ class App extends Component {
           <Link to="/" className="App-navbar__title">
             GMAT Trainer
           </Link>
-          <Link to="/dashboard">
-            <img src={this.state.avatarUrl} style={{borderRadius:"50%", width:"2rem", backgroundColor:"black"}}/>
-          </Link>
           {
             auth.isLoggedIn() ?
-            <DescriptiveTextBox
-              onClick={() => {
-                auth.logout()
-                  .then( () => {
-                    this.setState({avatarUrl: undefined, username:undefined, isLoggedIn: false});
-                    this.props.router.push('/');
-                  })
-              }}
-              theText="LOGOUT"
-            />
+              <div>
+                <DescriptiveTextBox
+                  onClick={() => {
+                    auth.logout()
+                      .then( () => {
+                        this.setState({avatarUrl: "", username:undefined});
+                        this.props.router.push('/');
+                      })
+                  }}
+                  theText="LOGOUT"
+                />
+                <Link to="/dashboard">
+                  <img src={this.state.avatarUrl} alt="gravatarIcon" style={{borderRadius:"50%", maxWidth:"2rem", backgroundColor:"black"}}/>
+                </Link>
+                <DescriptiveTextBox theText={this.state.username}/>
+              </div>
               :
-            null
+              null
           }
         </div>
-        {React.cloneElement(this.props.children, {logOutProp : this.state.isLoggedIn} )}
-
+        {React.cloneElement(this.props.children, {loggedInProp :this.props.loggedIn} )}
       </div>
     );
   }

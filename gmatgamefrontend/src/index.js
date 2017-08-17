@@ -12,7 +12,7 @@ import Page404 from "./pages/Page404";
 
 const routes = (
   <Router history={browserHistory}>
-    <Route path="/" component={App}>
+    <Route path="/" component={(props) => <App {...props} loggedIn={auth.isLoggedIn()} />}>
       <IndexRoute component={LoginHomePage} onEnter={(nextState, replace)=>{
         if (auth.isLoggedIn()){
           replace("/dashboard");

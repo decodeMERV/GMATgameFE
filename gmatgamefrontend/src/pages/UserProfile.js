@@ -26,7 +26,7 @@ export default class UserProfile extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (this.props.logOutProp !== prevProps.logOutProp){
+    if (this.props.loggedInProp !== prevProps.loggedInProp && prevProps.loggedInProps === false){
       this.setState({
         username : "",
         avatarUrl : "",
@@ -35,9 +35,8 @@ export default class UserProfile extends Component {
       })
     }
   }
-
+//We can get rid of CDU and check if user is logged in with ternary render or not
    render(){
-    console.log("REDNER")
     return (
       <div className="profile-container">
         <img src={this.state.avatarUrl} alt="gravatar" style={{borderRadius:"50%"}}/>
