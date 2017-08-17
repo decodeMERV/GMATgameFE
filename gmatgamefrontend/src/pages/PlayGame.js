@@ -91,7 +91,7 @@ export default class PlayGame extends Component {
           )}
           <div className="next">
           { this.state.isPlayerCorrect !== undefined ?
-            <DescriptiveTextBox theText="NEXT QUESTION" onClick={this.nextQuestionFetch}/>
+            <DescriptiveTextBox theText="NEXT" bgColor="#f19506" onClick={this.nextQuestionFetch}/>
             :
             null
           }
