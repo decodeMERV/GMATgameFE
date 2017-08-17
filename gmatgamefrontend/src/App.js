@@ -44,11 +44,11 @@ class App extends Component {
     return (
       <div className="App">
         <div className="App-navbar">
-          <Link to="/play" className="play-button">
-            PLAY
-          </Link>
           <Link to="/" className="App-navbar__title">
             GMAT Trainer
+          </Link>
+          <Link to="/play" className="play-button">
+            PLAY
           </Link>
           {
             auth.isLoggedIn() ?
