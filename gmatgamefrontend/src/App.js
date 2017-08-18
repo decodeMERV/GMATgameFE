@@ -72,7 +72,7 @@ class App extends Component {
               null
           }
         </div>
-        {React.cloneElement(this.props.children, {loggedInProp :this.props.loggedIn} )}
+        {React.cloneElement(this.props.children, {loggedInProp :this.props.loggedIn,username : this.state.username } )}
       </div>
     );
   }

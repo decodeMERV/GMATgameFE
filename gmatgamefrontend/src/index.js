@@ -8,6 +8,7 @@ import LoginHomePage from "./pages/LoginHomePage";
 import PlayGame from "./pages/PlayGame";
 import UserProfile from "./pages/UserProfile";
 import SignUp from "./pages/SignUp";
+import LeaderBoard from "./pages/LeaderBoard";
 import Page404 from "./pages/Page404";
 
 const routes = (
@@ -20,6 +21,7 @@ const routes = (
       }}/>
       <Route path="play" component={PlayGame}/>
       <Route path="signup" component={SignUp}/>
+      <Route path="leaders" component={LeaderBoard}/>
       <Route path="dashboard" component={UserProfile} onEnter={(nextState, replace)=>{
         if (!auth.isLoggedIn()){
           replace("/");

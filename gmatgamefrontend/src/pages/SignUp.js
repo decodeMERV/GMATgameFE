@@ -17,7 +17,7 @@ export default class LoginHomePage extends Component {
     if (email && password && username) {
       auth.signUp(email, password, username, interests)
         .then(res => this.props.router.push('/'))
-        .catch(() => this.setState({theError: "Wrong username or password"}))
+        .catch(() => this.setState({theError: "Please correct your values above."}))
     }
     else {
       this.setState({error: "Please complete the signup form"})
@@ -29,7 +29,7 @@ export default class LoginHomePage extends Component {
       this.setState({error: null})
     }
     if (e.keyCode === ENTER) {
-      this._handleLogin()
+      this._handleSignUp()
     }
   }
 
