@@ -28,18 +28,19 @@ const routes = (
           replace("/");
         }
       }}/>
-      <Route path="patron" getComponent={(nextState, callback) => {
-        auth.getCurrentLoggedInUser(auth.getToken())
-          .then((res) => {
-            if (!res.body.admin){
-              callback(null, Page404)
-            }
-            else {
-              callback(null, AdminDashBoard)
-            }
-          })
-          .catch( () => callback(null, Page404) )
-      }}/>
+      <Route path="patron" component={AdminDashBoard}/>
+      {/*<Route path="patron" getComponent={(nextState, callback) => {*/}
+        {/*auth.getCurrentLoggedInUser(auth.getToken())*/}
+          {/*.then((res) => {*/}
+            {/*if (!res.body.admin){*/}
+              {/*callback(null, Page404)*/}
+            {/*}*/}
+            {/*else {*/}
+              {/*callback(null, AdminDashBoard)*/}
+            {/*}*/}
+          {/*})*/}
+          {/*.catch( () => callback(null, Page404) )*/}
+      {/*}}/>*/}
       <Route path="*" component={Page404}/>
     </Route>
   </Router>

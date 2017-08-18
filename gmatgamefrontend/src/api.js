@@ -63,7 +63,7 @@ class Api {
 
   createQuestion = (insertQuesObject, token) => {
     return superagent
-      .post(`${API_HOST}/questions/insert`)
+      .post(`${API_HOST}/questions`)
       .set('Content-Type', 'application/json')
       .set('Authorization', `token ${token}`)
       .send(insertQuesObject)
