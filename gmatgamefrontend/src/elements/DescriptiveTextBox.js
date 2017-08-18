@@ -7,9 +7,9 @@ export default (props) => {
           style=
           {{
             backgroundColor: props.bgColor ? props.bgColor : "lightgray",
-            color : props.color ? props.color : "black",
+            color : props.color ? props.color : "white",
             fontSize : props.fontSize ? props.fontSize : "1rem",
-            width : props.width ? props.width : "30%"
+            // width : props.width ? props.width : "30%",
           }}
           className="textbox"
           onClick={props.onClick}
