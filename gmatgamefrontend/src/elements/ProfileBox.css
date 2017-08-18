@@ -1,5 +1,34 @@
-@import url('https://fonts.googleapis.com/css?family=Muli');
 
+.profile-container{
+
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 5%;
+    align-items: center;
+
+}
+
+.profilebox {
+  overflow-wrap: break-word;
+  padding: 0.5rem;
+  border: solid 0.1rem rgb(115, 114, 114);
+  min-width: 50vw;
+  max-width: 60vw;
+  border-radius: 15px;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-flow: wrap column;
+  flex-flow: wrap column;
+  -ms-flex-pack: center;
+  justify-content: center;
+  text-align: center;
+  margin: 3%;
+}
+
+
+/*
 .profilebox {
   overflow-wrap: break-word;
   font-family: 'Muli', sans-serif;
@@ -32,4 +61,4 @@
     min-width: 25vw;
     max-width: 35vw;
   }
-}
+}*/
