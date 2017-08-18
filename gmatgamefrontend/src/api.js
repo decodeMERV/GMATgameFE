@@ -46,6 +46,29 @@ class Api {
       .set('Authorization', `token ${token}`)
   }
 
+  recordQuestion = (username,questionId,isCorrect,category,answer,level,score) => (
+
+    superagent
+      .post(`${API_HOST}/record/recorder`)
+      .set('Content-Type', 'application/json')
+      .send({ username, questionId, isCorrect, category, answer, level, score })
+
+  )
+
+  getLeader = () => (
+    superagent.get(`${API_HOST}/record/leaders`)
+      .set('Content-Type', 'application/json')
+      .send()
+  )
+
+  createQuestion = (insertQuesObject, token) => {
+    return superagent
+      .post(`${API_HOST}/questions/insert`)
+      .set('Content-Type', 'application/json')
+      .set('Authorization', `token ${token}`)
+      .send(insertQuesObject)
+  }
+
 }
 
 

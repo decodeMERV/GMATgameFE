@@ -8,7 +8,9 @@ import LoginHomePage from "./pages/LoginHomePage";
 import PlayGame from "./pages/PlayGame";
 import UserProfile from "./pages/UserProfile";
 import SignUp from "./pages/SignUp";
+import LeaderBoard from "./pages/LeaderBoard";
 import Page404 from "./pages/Page404";
+import AdminDashBoard from "./pages/AdminDashboard";
 
 const routes = (
   <Router history={browserHistory}>
@@ -20,10 +22,23 @@ const routes = (
       }}/>
       <Route path="play" component={PlayGame}/>
       <Route path="signup" component={SignUp}/>
+      <Route path="leaders" component={LeaderBoard}/>
       <Route path="dashboard" component={UserProfile} onEnter={(nextState, replace)=>{
         if (!auth.isLoggedIn()){
           replace("/");
         }
+      }}/>
+      <Route path="patron" getComponent={(nextState, callback) => {
+        auth.getCurrentLoggedInUser(auth.getToken())
+          .then((res) => {
+            if (!res.body.admin){
+              callback(null, Page404)
+            }
+            else {
+              callback(null, AdminDashBoard)
+            }
+          })
+          .catch( () => callback(null, Page404) )
       }}/>
       <Route path="*" component={Page404}/>
     </Route>
