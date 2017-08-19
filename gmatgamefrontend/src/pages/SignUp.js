@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import './SignUp.css';
 import auth from '../auth';
 
+
 const ENTER = 13;
 
 export default class LoginHomePage extends Component {
@@ -36,6 +37,9 @@ export default class LoginHomePage extends Component {
   render() {
     return (
       <div className="signer">
+
+
+
         <p>E-Mail</p>
         <input type="text" ref="email" defaultValue='login'
                onKeyUp={this._handleTyping}
@@ -55,6 +59,7 @@ export default class LoginHomePage extends Component {
         <button className="signupbutton" onClick={this._handleSignUp}>Create an Account</button>
 
         <h3>{this.state.theError}</h3>
+
       </div>
     )
   }

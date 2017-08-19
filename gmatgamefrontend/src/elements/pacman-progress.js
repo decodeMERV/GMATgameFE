@@ -1,4 +1,5 @@
 var PacmanProgress = require('react-pacman-progress');
+var React = require('react');
 
 var App = React.createClass({
   getInitialState() {
@@ -14,7 +15,7 @@ var App = React.createClass({
       <div className="container" onCLick={this.handleClick}>
         {
           slides.map(function(slide, i) {
-            return <Slide index={i} currentIndex={this.state.currentIndex} color={slide.color} />;
+            return <div style={{backgroundColor: slide.color, width: 300, height: 300}} />;
           }.bind(this))
         }
         <PacmanProgress items={slides.length} currentIndex={this.state.currentIndex} />
@@ -26,3 +27,5 @@ var App = React.createClass({
     this.setState({currentIndex: this.state.currentIndex + 1});
   }
 });
+
+module.exports = App;
