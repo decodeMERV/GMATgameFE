@@ -6,6 +6,7 @@ import Answer from '../elements/Answer';
 import api from '../api';
 import Timer from '../elements/Timer';
 
+
 export default class PlayGame extends Component {
   constructor(){
     super();
@@ -62,7 +63,7 @@ export default class PlayGame extends Component {
 
     if (this.state.correctAns === answer && this.state.isPlayerCorrect === undefined){
 
-      console.log("this.props.username: ", this.props.username)
+      //console.log("this.props.username: ", this.props.username)
 
       this.setState({
         isPlayerCorrect : true,
