@@ -1,0 +1,33 @@
+table, th, td {
+    border: 1px solid black;
+    margin:auto;
+    text-align: center;
+
+}
+
+.LB {
+    margin:auto;
+}
+
+th {
+    background-color:yellow;
+}
+
+h2 {
+    padding: 10px 0px 10px 0px;
+    text-align: center;
+}
+
+table {
+
+    padding: 10px;
+    border: none;
+}
+
+.col1{
+    text-align: left;
+}
+
+th{
+    padding: 5px;
+}
