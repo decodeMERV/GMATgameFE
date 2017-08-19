@@ -89,17 +89,18 @@ export default class PlayGame extends Component {
     var questionId = this.state.ID;
     var category = this.state.cat;
     var level = this.state.level;
+    var time = this.state.timeElapsed;
 
 
 
-    console.log("pts ", score)
+    console.log("TIME ", time)
 
     //api.recordQuestion(this.props.username, this.state.ID, rw, this.state.cat, answer, this.state.level, pts)
-      api.recordQuestion(username,questionId,isCorrect,category,answer,level,score)
+      api.recordQuestion(username,questionId,isCorrect,category,answer,level,score,time)
       .then(res => {console.log("res",res)})
       .catch(() => this.setState({theError: "Wrong database command"}))
-    console.log("all this chit: ", this.props.username, this.state.ID, this.state.cat, answer, this.state.level)
-    console.log("all this cheet", username,questionId,isCorrect,category,answer,level,score);
+    console.log("all this chit: ", this.props.username, this.state.ID, this.state.cat, answer, this.state.level,this.state.timeElapsed)
+    console.log("all this cheet", username,questionId,isCorrect,category,answer,level,score,time);
   }
 
   colorChoices = (answersAtoE) => {
