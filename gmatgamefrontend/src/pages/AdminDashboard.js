@@ -22,7 +22,7 @@ export default class AdminDashboard extends Component {
     for (var ref in this.refs){
       questionObj[ref] = (this.refs[ref].value);
     }
-    console.log(questionObj);
+
     api.createQuestion(questionObj, auth.getToken())
       .catch( (error) => console.log("error posting to questions table", error))
   }
