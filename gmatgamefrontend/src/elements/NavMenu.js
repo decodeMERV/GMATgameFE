@@ -23,6 +23,7 @@ class Menu extends Component {
 
   componentDidUpdate(prevProps, prevState) {
 
+//this checks the router endpoint and makes an API call to gravatar if there is no logged-in user
     if(auth.isLoggedIn()) {
       if(this.state.url.length <= 0) {
         this.fetchProfilePic();
