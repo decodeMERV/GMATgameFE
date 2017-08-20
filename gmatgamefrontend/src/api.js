@@ -69,6 +69,13 @@ class Api {
       .send(insertQuesObject)
   }
 
+  getArrayOfQuestions = (queryQuestionsObj, token) => {
+    return superagent
+      .get(`${API_HOST}/questions/?fromId=${queryQuestionsObj.fromId}&limit=${queryQuestionsObj.limit}&categoryId=${queryQuestionsObj.catId}&level=${queryQuestionsObj.levelDifficulty}`)
+      .set('Content-Type', 'application/json')
+      .set('Authorization', `token ${token}`)
+  }
+
 }
 
 
