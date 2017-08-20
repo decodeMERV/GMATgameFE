@@ -105,10 +105,10 @@ export default class PlayGame extends Component {
 
   colorChoices = (answersAtoE) => {
     if (answersAtoE === this.state.correctAns) {
-      return "green";
+      return "#d2f9d2";
     }
     else if (answersAtoE !== this.state.correctAns && answersAtoE === this.state.playerChoice){
-      return "red";
+      return "#f9a1a1";
     }
   }
 
@@ -124,13 +124,11 @@ export default class PlayGame extends Component {
   render(){
     return(
       <div>
-        <div className="timer-container">
+        <div className="scoreboard-container">
           <Timer time={this.state.timeElapsed} />
-        </div>
-        <div className="description-container">
-          <DescriptiveTextBox bgColor="#25a521" color="white" theText={"SCORE: " + this.state.score}/>
-          <DescriptiveTextBox bgColor="#0790f7" color="white" theText={"Category: " + this.state.cat_name}/>
-          <DescriptiveTextBox bgColor="#f03b3b" color="white" theText={"Level: " + this.state.level}/>
+          <DescriptiveTextBox bgColor="none" color="white" theText={"SCORE: " + this.state.score}/>
+          <DescriptiveTextBox bgColor="none" color="white" theText={this.state.cat_name}/>
+          <DescriptiveTextBox bgColor="none" color="white" theText={"Level: " + this.state.level}/>
         </div>
         <div className="game-container">
           <Question questionText={this.state.Q}/>
@@ -143,7 +141,7 @@ export default class PlayGame extends Component {
           )}
           <div className="next">
           { this.state.isPlayerCorrect !== undefined ?
-            <DescriptiveTextBox theText="NEXT" bgColor="#f19506" onClick={this.nextQuestionFetch}/>
+            <DescriptiveTextBox theText="NEXT" bgColor="none" onClick={this.nextQuestionFetch}/>
             :
             null
           }

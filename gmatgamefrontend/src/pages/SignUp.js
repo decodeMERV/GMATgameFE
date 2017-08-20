@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import './SignUp.css';
 import auth from '../auth';
 
+
 const ENTER = 13;
 
 export default class LoginHomePage extends Component {
@@ -36,25 +37,31 @@ export default class LoginHomePage extends Component {
   render() {
     return (
       <div className="signer">
-        <p>E-Mail</p>
-        <input type="text" ref="email" defaultValue='login'
-               onKeyUp={this._handleTyping}
-        />
-        <p>Password</p>
-        <input type="password" ref="password" defaultValue='password'
-               onKeyUp={this._handleTyping}
-        />
-        <p>Username</p>
-        <input type="username" ref="username" defaultValue='username'
-               onKeyUp={this._handleTyping}
-        />
-        <p>Interests</p>
-        <input type="interests" ref="interests" defaultValue='interests'
-               onKeyUp={this._handleTyping}
-        />
-        <button className="signupbutton" onClick={this._handleSignUp}>Create an Account</button>
 
-        <h3>{this.state.theError}</h3>
+        <div className="SignupBox">
+
+            <p>E-Mail</p>
+            <input type="text" ref="email" defaultValue='login'
+                   onKeyUp={this._handleTyping}
+            />
+            <p>Password</p>
+            <input type="password" ref="password" defaultValue='password'
+                   onKeyUp={this._handleTyping}
+            />
+            <p>Username</p>
+            <input type="username" ref="username" defaultValue='username'
+                   onKeyUp={this._handleTyping}
+            />
+            <p>Interests</p>
+            <input type="interests" ref="interests" defaultValue='interests'
+                   onKeyUp={this._handleTyping}
+            />
+            <button className="signupbutton" onClick={this._handleSignUp}>Create an Account</button>
+
+            <h3>{this.state.theError}</h3>
+
+          </div>
+
       </div>
     )
   }

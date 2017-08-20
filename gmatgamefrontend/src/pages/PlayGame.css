@@ -1,6 +1,10 @@
 .game-container{
   display: flex;
+  -ms-flex-flow: column wrap;
   flex-flow: column wrap;
+  -ms-flex-align: center;
   align-items: center;
+  -ms-flex-pack: center;
   justify-content: center;
+  background-color: #386c67;
 }
