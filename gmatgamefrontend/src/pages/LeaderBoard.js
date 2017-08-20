@@ -42,6 +42,7 @@ export default class LeaderBoard extends Component {
             <tr>
               <th>User</th>
               <th>Total Score</th>
+              <th>Games Played</th>
 
             </tr>
 
@@ -49,6 +50,7 @@ export default class LeaderBoard extends Component {
               <tr key={item.user}>
                 <td className="col1">{item.user}</td>
                 <td className="col2">{item.total}</td>
+                <td className="col3">{item.cnt}</td>
               </tr>
             ))}
 
