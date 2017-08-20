@@ -47,11 +47,9 @@ class App extends Component {
           <Link to="/" className="App-navbar__title">
           </Link>
           <div>
-            <img src={require("./gmat-logo.png")} style={{width: 200, height: 50, marginLeft: 10 }} />
-
-
-
+            <img src={require("./gmat_logo.svg")} style={{width: 200, height: 50, marginLeft: 10 }} />
           </div>
+
           {
             auth.isLoggedIn() ?
                 <div className="gravatarIcon">
@@ -76,7 +74,9 @@ class App extends Component {
             null
         }
         </div>
+        <div className="background-overlay">
         {React.cloneElement(this.props.children, {loggedInProp :this.props.loggedIn, username : this.state.username } )}
+      </div>
       </div>
     );
   }

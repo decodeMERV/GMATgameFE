@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 137.71 33.91">
+  <defs>
+    <clipPath id="clip-path" transform="translate(0 -0.33)">
+      <rect width="138" height="34" style="fill:none"/>
+    </clipPath>
+  </defs>
+  <g style="clip-path:url(#clip-path)">
+    <g style="clip-path:url(#clip-path)">
+      <path d="M10,17v0.32c0-5,3.44-8.94,8.14-8.94a11.26,11.26,0,0,1,7.77,3.07l5.26-6.38A19.52,19.52,0,0,0,17.75.33C7.65,0.33,0,7.78,0,17.28v0.09C0,17.6.18,17.82,0.19,18c3.22,1,6.75,1.84,10,2.61A10.24,10.24,0,0,1,10,17.42" 
+            transform="translate(0 -0.33)" 
+            style="fill:#f2f2f2"/>
+      <path d="M18.09,34.23a22.16,22.16,0,0,0,10.47-2.57,159.26,159.26,0,0,1-23.93-3,18,18,0,0,0,13.46,5.52" 
+            transform="translate(0 -0.33)" 
+            style="fill:#f2f2f2"/>
+      <path d="M32,15H17v6h7v2.2c3,0.41,5,.75,8,1V15Z" 
+            transform="translate(0 -0.33)" 
+            style="fill:#f2f2f2"/>
+      <path d="M45,14.95l6.19,9.8c1.35,0,2.4-.09,3.74-0.16L61,14.86v9.27q4.5-.42,9-1.1V1H60.81L53,13.62,45.26,1H36V24.47q4.5,0.29,9,.34V14.95Z" 
+            transform="translate(0 -0.33)" 
+            style="fill:#f2f2f2"/>
+      <path d="M61,34h9V28.14q-4.5,1-9,1.7V34Z" 
+            transform="translate(0 -0.33)" 
+            style="fill:#f2f2f2"/>
+      <path d="M36,32v2h9V31.62c-3,.15-5.69.23-8.52,0.23H36" 
+            transform="translate(0 -0.33)" 
+            style="fill:#f2f2f2"/>
+      <path d="M89.47,11.46l2.63,6.7c2.71-.81,5.39-1.56,8-2.51L93.89,1H85.18l-9,21.16c3.36-.64,6.68-1.44,10-2.28Z" 
+            transform="translate(0 -0.33)" 
+            style="fill:#f2f2f2"/>
+      <path d="M71.3,34h9.5l2.33-6H95.71l2.38,6h9.69l-6.59-15.8A160.19,160.19,0,0,1,74,27.62Z" 
+            transform="translate(0 -0.33)" 
+            style="fill:#f2f2f2"/>
+      <path d="M102,1V9h10v1.82C118,7.94,124.44,5,130.42,1H102Z" 
+            transform="translate(0 -0.33)" 
+            style="fill:#f2f2f2"/>
+      <path d="M112,13V34h9V9h10V1c-6,4.34-13,8.29-19,11.79" 
+            transform="translate(0 -0.33)" 
+            style="fill:#f2f2f2"/>
+      <path d="M132.13,4a2.79,2.79,0,0,1,5.58,0,2.79,2.79,0,0,1-5.58,0m4.94,0a2.07,2.07,0,0,0-2.16-2.16A2,2,0,0,0,132.79,4a2,2,0,0,0,2.12,2.12A2.08,2.08,0,0,0,137.07,4m-0.76,1H134V2h1a1.33,1.33,0,0,1,1.27,1.25,0.85,0.85,0,0,1-.46.81ZM135,3.82a0.28,0.28,0,0,0,.33-0.3A0.27,0.27,0,0,0,135,3.28h-0.3V3.82H135Z" 
+            transform="translate(0 -0.33)" 
+            style="fill:#f2f2f2"/>
+    </g>
+  </g>
+</svg>
