@@ -1,14 +1,17 @@
 /* @import url('https://fonts.googleapis.com/css?family=Roboto');
 */
+
 .answer {
   text-align: left;
   border: solid 0.1rem rgba(63, 56, 56, 0.77);
-  border-radius: 15px;
+  /*border-radius: 15px;*/
   padding: 1.7rem;
   width: 90%;
   max-width: 90%;
   margin-top: 10px;
   cursor: pointer;
+  min-width: inherit;
+  line-height: 2;
 }
 
 /*.next {

@@ -2,20 +2,19 @@
 
 .question {
   text-align: left;
-  padding: 1rem;
-  border: solid 2px gray;
-  border-radius: 15px;
+  padding: 1.5rem;
+  line-height: 2;
 }
 
-.description-container {
-  padding: 10px;
+.scoreboard-container {
   min-width: 260px;
+  display: -ms-flexbox;
   display: flex;
+  -ms-flex-direction: row;
   flex-direction: row;
+  -ms-flex-pack: justify;
   justify-content: space-between;
-}
+  align-items: center;
+  border: white 1px solid;
 
-.question-highlight {
-
-  
 }

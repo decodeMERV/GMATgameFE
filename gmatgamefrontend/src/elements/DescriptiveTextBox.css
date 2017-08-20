@@ -3,11 +3,10 @@
 
 .textbox {
   display: inline-block;
-  border-radius: 10px;
-  padding: 10px 15px 15px 15px;
+  /*border: white 1px solid;*/
+  border-radius: 1px;
+  padding: 1rem;
   text-align: center;
-  margin-top: 10px;
-  background-color: red;
   color: white;
   cursor: pointer;
 }

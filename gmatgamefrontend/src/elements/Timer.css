@@ -1,11 +1,9 @@
 .timer {
-  font-size: 2em;
+  font-size: 1.5rem;
   font-weight: bold;
-  color: #433d3d;
-  border: black 1px solid;
-  border-radius: 15px;
-  display: table;
-  margin: 10px auto;
+  color: #4ee2f6;
+  /*display: table; */
+  margin: 20px auto;
   padding: 10px;
   line-height: 1;
   cursor: pointer;

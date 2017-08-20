@@ -81,7 +81,7 @@ blockquote, q {
   display: flex;
   -ms-flex-direction: column;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-evenly;
   -ms-flex-align: center;
   align-items: center;
   background: rgba(9, 9, 9, 0.86);
