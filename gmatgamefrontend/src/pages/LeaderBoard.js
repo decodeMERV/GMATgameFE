@@ -34,6 +34,7 @@ export default class LeaderBoard extends Component {
     return (
       <div className="LB">
         <h2> All-Time Leaders </h2>
+        <p> Can you make it to our hall of fame?</p>
           <table className="rwd-table">
 
 
