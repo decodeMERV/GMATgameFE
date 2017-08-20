@@ -9,7 +9,7 @@ table, th, td {
     font-family: 'Nunito', sans-serif;
     margin:auto;
     text-align: center;
-    color:black;
+    color: #444444;
     background-color: white;
     border: 1px solid #b1bdcc;
 
@@ -18,7 +18,7 @@ table, th, td {
 
 
 p {
-    font-weight: bolder;
+    font-color:#444444;
     font-size: larger;
     font-style: italic;
     padding-top:1rem;
