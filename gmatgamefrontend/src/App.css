@@ -3,7 +3,7 @@ body *, body *:before, body *:after { box-sizing: inherit; }
 html, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
-del, dfn, em, font, img, ins, kbd, q, s, samp,
+del, dfn, em, font, ins, kbd, q, s, samp,
 small, strike, strong, sub, sup, tt, var,
 dl, dt, dd, ol, ul, li,
 fieldset, form, label, legend,
@@ -19,6 +19,7 @@ table, caption, tbody, tfoot, thead, tr, th, td, header {
   vertical-align: baseline;
   line-height: normal;
   /*min-width: 70%;*/
+  text-decoration: none;
 }
 /* remember to define focus styles! */
 :focus {
@@ -31,6 +32,11 @@ body {
   color: #3e3a3a;
   background: #eeeef2;
   background-size: cover;
+}
+
+.gmatimage {
+
+  padding-left: 20px;
 }
 
 /*.background-overlay {*/

@@ -68,8 +68,8 @@ class App extends Component {
 
 
           <Link to="/" className="App-navbar__title">
-          <div>
-            <img src={require("./gmat_logo.svg")} width="175px"/>
+          <div className="gmatimage">
+            <img src={require("./gmat_logo.svg")} width="160px"/>
           </div>
 
           </Link>
@@ -81,16 +81,16 @@ class App extends Component {
                     <img src={this.state.avatarUrl} alt="gravatarIcon" style={{borderRadius:"50%", maxWidth:"3rem", backgroundColor:"#2b2b2b"}}/>
                   </Link>
                   <div>
-                        <p className="p-nav"
-                          onClick={() => {
-                              auth.logout()
-                              .then( () => {
-                                this.setState({avatarUrl: "", username:undefined});
-                                this.props.router.push('/');
-                              })
-                            }}
-                            >
-                            logout</p>
+                        {/*<p className="p-nav"*/}
+                          {/*onClick={() => {*/}
+                              {/*auth.logout()*/}
+                              {/*.then( () => {*/}
+                                {/*this.setState({avatarUrl: "", username:undefined});*/}
+                                {/*this.props.router.push('/');*/}
+                              {/*})*/}
+                            {/*}}*/}
+                            {/*>*/}
+                            {/*logout</p>*/}
                       </div>
                     {/*<p>{this.state.username}</p>*/}
 

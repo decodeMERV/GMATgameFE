@@ -53,12 +53,14 @@ class Menu extends Component {
 
         <div className="menu__list">
 
+          {isLoggedIn ?
           <Link to="/" className="menu__item" onClick={closeMenu}>
             Home
           </Link>
+            : null}
 
           {!isLoggedIn ?
-            <Link to="/login" className="menu__item" onClick={closeMenu}>
+            <Link to="/" className="menu__item" onClick={closeMenu}>
               Login
             </Link>
             : null}
@@ -87,11 +89,11 @@ class Menu extends Component {
             </Link>
             : null}
 
-          {/*{isLoggedIn ?*/}
-            {/*<Link to="/" className="menu__item" onClick={this.changeLoggedIn()}>*/}
-              {/*Logout*/}
-            {/*</Link>*/}
-            {/*: null}*/}
+          {isLoggedIn ?
+            <Link to="/" className="menu__item" onClick={closeMenu}>
+              Logout
+            </Link>
+            : null}
 
 
 
