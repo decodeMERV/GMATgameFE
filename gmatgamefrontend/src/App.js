@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { Link } from 'react-router';
 import './App.css';
 import auth from './auth.js';
-{/*import DescriptiveTextBox from './elements/DescriptiveTextBox';*/}
+import Menu from './elements/Menu.js';
+
 
 class App extends Component {
   constructor() {
@@ -44,10 +45,13 @@ class App extends Component {
       <div className="App">
 
         <div className="App-navbar">
+
           <Link to="/" className="App-navbar__title">
           </Link>
+
+          <i className="fa fa-bars fa-2x menu-icon" />
           <div>
-            <img src={require("./gmat_logo.svg")} style={{width: 200, height: 50, marginLeft: 10 }} />
+            <img src={require("./gmat_logo.svg")} alt="logo" style={{width: 200, height: 50, marginLeft: 10 }} />
           </div>
 
           {
