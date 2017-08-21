@@ -2,9 +2,6 @@ import React, { Component } from 'react';
 import { Link } from 'react-router';
 import './App.css';
 import auth from './auth.js';
-import Menu from './elements/Menu.js';
-
-const FA = require('react-fontawesome')
 
 
 class App extends Component {
@@ -51,7 +48,7 @@ class App extends Component {
           <Link to="/" className="App-navbar__title">
 
           <div>
-            <img src={require("./gmat_logo.svg")} />
+            <img src={require("./gmat_logo.svg")} alt="gmat_logo" />
           </div>
 
           </Link>
