@@ -37,11 +37,11 @@ export default class LoginHomePage extends Component {
     return (
       <div className="logger">
         <div className="login">
-          <p>E-Mail</p>
+          <p className="plog">E-Mail</p>
           <input type="text" ref="email" placeholder="login"
                  onKeyUp={this._handleTyping}
           />
-          <p>Password</p>
+          <p className="plog">Password</p>
           <input type="password" ref="password" placeholder="password"
                  onKeyUp={this._handleTyping}
           />

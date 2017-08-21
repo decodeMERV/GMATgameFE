@@ -76,7 +76,9 @@ input[type=password], select {
     /*cursor: pointer;*/
 /*}*/
 
-
+.plog {
+    text-align: center;
+}
 
 .game-container{
     font-family: 'Nunito', sans-serif;

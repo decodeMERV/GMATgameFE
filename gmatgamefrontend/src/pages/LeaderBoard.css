@@ -4,7 +4,7 @@ body {
     background-color: #eeeef2;
 }
 
-table, th, td {
+/*table, th, td {*/
 
     font-family: 'Nunito', sans-serif;
     margin:auto;
@@ -14,7 +14,7 @@ table, th, td {
 
 
 
-}
+/*}*/
 
 
 p {
@@ -57,10 +57,13 @@ h1 {
     /*background-color: #33d87a;*/
 }
 
-table {
-    border-collapse: collapse;
+/*table {*/
+    /*border-collapse: collapse;*/
 
-}
+    /*border: solid 0.1rem #33d87a;*/
+    /*border-radius: 25px;*/
+
+/*}*/
 
 .col1{
     text-align: left;
@@ -68,11 +71,51 @@ table {
 
 }
 
+.col2{
+    text-align: center;
+    padding: 0.75rem;
+
+}
+.col3{
+    text-align: center;
+    padding: 0.75rem;
+
+}
+
+/*th {*/
+    /*padding: 1rem;*/
+    /*background-color: #1ed760;*/
+/*}*/
+
+/*td {*/
+
+/*}*/
+
+table {
+    border-collapse:separate;
+    border:solid #ccc 1px;
+    border-radius:10px;
+    -moz-border-radius:10px;
+    font-family: 'Nunito', sans-serif;
+    margin:auto;
+    text-align: center;
+    background-color: white;
+}
+
+td, th {
+    border-left:solid #ccc 1px;
+    border-top:solid #ccc 1px;
+}
+
 th {
+    /*background-color: #1ed760;*/
+    border-top: none;
     padding: 1rem;
-    background-color: #4ebb4b;
-}
-
-td {
+    text-align: center;
 
 }
+
+td:first-child, th:first-child {
+    border-left: none;
+}
+
