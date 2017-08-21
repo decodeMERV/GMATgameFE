@@ -6,6 +6,7 @@ import Answer from '../elements/Answer';
 import api from '../api';
 import Timer from '../elements/Timer';
 
+
 export default class PlayGame extends Component {
   constructor(){
     super();
@@ -28,7 +29,7 @@ export default class PlayGame extends Component {
           D: res.body.answerD,
           E: res.body.answerE,
           correctAns: res.body.correctAnswer,
-          cat : res.body.catcategoryId,
+          cat : res.body.categoryId,
           cat_name : res.body.categoryName,
           level : res.body.level,
           isPlayerCorrect : undefined,
@@ -62,7 +63,7 @@ export default class PlayGame extends Component {
 
     if (this.state.correctAns === answer && this.state.isPlayerCorrect === undefined){
 
-      console.log("this.props.username: ", this.props.username)
+      //console.log("this.props.username: ", this.props.username)
 
       this.setState({
         isPlayerCorrect : true,
@@ -88,25 +89,26 @@ export default class PlayGame extends Component {
     var questionId = this.state.ID;
     var category = this.state.cat;
     var level = this.state.level;
+    var time = this.state.timeElapsed;
 
 
 
-    console.log("pts ", score)
+    console.log("TIME ", time)
 
     //api.recordQuestion(this.props.username, this.state.ID, rw, this.state.cat, answer, this.state.level, pts)
-      api.recordQuestion(username,questionId,isCorrect,category,answer,level,score)
+      api.recordQuestion(username,questionId,isCorrect,category,answer,level,score,time)
       .then(res => {console.log("res",res)})
       .catch(() => this.setState({theError: "Wrong database command"}))
-    console.log("all this chit: ", this.props.username, this.state.ID, this.state.cat, answer, this.state.level)
-    console.log("all this cheet", username,questionId,isCorrect,category,answer,level,score);
+    console.log("all this chit: ", this.props.username, this.state.ID, this.state.cat, answer, this.state.level,this.state.timeElapsed)
+    console.log("all this cheet", username,questionId,isCorrect,category,answer,level,score,time);
   }
 
   colorChoices = (answersAtoE) => {
     if (answersAtoE === this.state.correctAns) {
-      return "green";
+      return "#d2f9d2";
     }
     else if (answersAtoE !== this.state.correctAns && answersAtoE === this.state.playerChoice){
-      return "red";
+      return "#f9a1a1";
     }
   }
 
@@ -122,16 +124,21 @@ export default class PlayGame extends Component {
   render(){
     return(
       <div>
-        <div className="timer-container">
+        <div className="scoreboard-container">
           <Timer time={this.state.timeElapsed} />
-        </div>
-        <div className="description-container">
-          <DescriptiveTextBox bgColor="#25a521" color="white" theText={"SCORE: " + this.state.score}/>
-          <DescriptiveTextBox bgColor="#0790f7" color="white" theText={"Category: " + this.state.cat_name}/>
-          <DescriptiveTextBox bgColor="#f03b3b" color="white" theText={"Level: " + this.state.level}/>
+          <DescriptiveTextBox bgColor="none" color="white" theText={"SCORE: " + this.state.score}/>
+          <DescriptiveTextBox bgColor="none" color="white" theText={this.state.cat_name}/>
+          <DescriptiveTextBox bgColor="none" color="white" theText={"Level: " + this.state.level}/>
         </div>
         <div className="game-container">
           <Question questionText={this.state.Q}/>
+          <div className="next">
+            { this.state.isPlayerCorrect !== undefined ?
+              <DescriptiveTextBox theText="Next Question" bgColor="none" color="#444444" border="1px solid #b1bdcc" radius="4px" onClick={this.nextQuestionFetch}/>
+              :
+              null
+            }
+          </div>
           {/*The below ternaries are to check if the player has yet to click on the multiple choice options, if so we assign an onClick handler, if they have we begin to color them accordingly.*/}
           {['A','B','C','D','E'].map(ans =>
             <Answer answerText={this.state[ans]}
@@ -139,13 +146,12 @@ export default class PlayGame extends Component {
                     bgColor={this.state.isPlayerCorrect !== undefined ? this.colorChoices(ans) : null}
                     key={ans}/>
           )}
-          <div className="next">
-          { this.state.isPlayerCorrect !== undefined ?
-            <DescriptiveTextBox theText="NEXT" bgColor="#f19506" onClick={this.nextQuestionFetch}/>
-            :
-            null
-          }
-          </div>
+
+
+
+
+
+
         </div>
       </div>
     )

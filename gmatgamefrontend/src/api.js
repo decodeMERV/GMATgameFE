@@ -46,12 +46,12 @@ class Api {
       .set('Authorization', `token ${token}`)
   }
 
-  recordQuestion = (username,questionId,isCorrect,category,answer,level,score) => (
+  recordQuestion = (username,questionId,isCorrect,category,answer,level,score,time) => (
 
     superagent
       .post(`${API_HOST}/record/recorder`)
       .set('Content-Type', 'application/json')
-      .send({ username, questionId, isCorrect, category, answer, level, score })
+      .send({ username, questionId, isCorrect, category, answer, level, score, time})
 
   )
 
