@@ -51,27 +51,15 @@ class App extends Component {
 
         <div className="App-navbar">
 
-          {/*<div className="App-menubar">*/}
             <i className="fa fa-bars fa-2x menu-icon"
                onClick={()=>this.setState({ isMenuOpen: !isMenuOpen })}/>
-            {/*<Link to="/" className="App-navbar__title">Dashboardly</Link>*/}
-
-          {/*</div>*/}
 
           <Menu show={isMenuOpen} closeMenu={this.closeMenu}/>
 
-
-
-
-          {/* LOGO starts Below*/}
-
-
-
           <Link to="/" className="App-navbar__title">
-          <div className="gmatimage">
-            <img src={require("./gmat_logo.svg")} width="160px"/>
-          </div>
-
+            <div className="gmatimage">
+              <img src={require("./gmat_logo.svg")} width="160px"/>
+            </div>
           </Link>
 
           {
@@ -93,16 +81,14 @@ class App extends Component {
                             {/*logout</p>*/}
                       </div>
                     {/*<p>{this.state.username}</p>*/}
-
                 </div>
             :
             null
         }
-
         </div>
 
         <div className="background-overlay">
-        {React.cloneElement(this.props.children, {loggedInProp :this.props.loggedIn, username : this.state.username } )}
+          {React.cloneElement(this.props.children, {loggedInProp :this.props.loggedIn, username : this.state.username } )}
       </div>
       </div>
     );

@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router';
+import { Link, withRouter } from 'react-router';
 import onClickOutside from 'react-onclickoutside';
 import auth from '../auth';
-// import api from '../../api';
+import api from '../api';
 import './Menu.css';
-// import Logout from "../Logout";
+//import Logout from "../Logout.js";
 
 
 class Menu extends Component {
@@ -30,6 +30,13 @@ class Menu extends Component {
     }
   }
 
+
+  _handleLogout = () =>{
+    auth.logout(auth.getToken())
+    .then((res => this.props.router.push('/')))
+    .catch( error => alert("Could not log you out, " + error) )
+}
+
   // fetchProfilePic = () => {
   //   return auth.getCurrentLoggedInUser(auth.getToken())
   //     .then(res => {
@@ -49,7 +56,6 @@ class Menu extends Component {
     const isLoggedIn = auth.isLoggedIn()
     return (
       <div className={`menu ${show?"show":""}`}>
-
 
         <div className="menu__list">
 
@@ -90,12 +96,10 @@ class Menu extends Component {
             : null}
 
           {isLoggedIn ?
-            <Link to="/" className="menu__item" onClick={closeMenu}>
+            <p className="menu__item_logout" onClick={this._handleLogout}>
               Logout
-            </Link>
+            </p>
             : null}
-
-
 
         </div>
 
@@ -105,4 +109,4 @@ class Menu extends Component {
 
 }
 
-export default onClickOutside(Menu);
+export default withRouter(onClickOutside(Menu));
