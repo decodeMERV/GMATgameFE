@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import './AdminDashboard.css';
 import DescriptiveTextBox from '../elements/DescriptiveTextBox';
+import DeleteButton from '../elements/DeleteButton';
 import api from '../api';
 import auth from '../auth';
 
@@ -48,13 +49,11 @@ export default class AdminDashboard extends Component {
         this.setState({successMSG: res.body.message})
       })
       .catch( (error) => {
-        console.log("error posting to questions table", error);
         this.setState({error: "Error posting to questions table" + error})
       })
   }
 
   fetchLeQuestions = (rowOffset, limitRows, categoryId, level ) => {
-    console.log("FETCHING LE QUESTIONS");
     var arrayQuesObj = {};
     arrayQuesObj.rowOffset = rowOffset || 0;
     arrayQuesObj.limit = limitRows || 10;
@@ -90,7 +89,6 @@ export default class AdminDashboard extends Component {
     if (this.state.rowOffset - Number(this.refs.limitQuestions.value) < 1) { return }
     this.setState({ rowOffset : this.state.rowOffset - Number(this.refs.limitQuestions.value)*2 }, //We need multiply it by two as the offset goes up in fetchLeQuestions
       () => {
-        console.log("Page ", this.state.rowOffset);
         this.fetchLeQuestions(this.state.rowOffset, this.refs.limitQuestions.value,
           (this.refs.categoryIdShowQuestions.value === "Category" ? undefined : this.refs.categoryIdShowQuestions.value ),
           (this.refs.levelShowQuestions.value === "Level" ? undefined : this.refs.levelShowQuestions.value))
@@ -99,6 +97,15 @@ export default class AdminDashboard extends Component {
 
   componentDidMount() {
     this.fetchLeQuestions();
+  }
+
+  deleteQuestion = (questionId, arrayIndex) => {
+    return (() => {
+      api.deleteThisQuestion(questionId, auth.getToken())
+        .then( () => { //Note here how I chose not to refetch the data to lessen server load, instead make it disappear on front-end - Vincent Lau
+          this.setState({ arrayQues : this.state.arrayQues.slice(0, arrayIndex).concat( this.state.arrayQues.slice(arrayIndex + 1) ) }) // Slice out the deleted item
+        })
+    })
   }
 
   render () {
@@ -162,8 +169,9 @@ export default class AdminDashboard extends Component {
                   <th>Title</th>
                   <th>Category</th>
                   <th>Level</th>
+                  <th></th>
                 </tr>
-                {this.state.arrayQues.map((question) => {
+                {this.state.arrayQues.map((question, i) => {
                   return (
                     <tr key={question.id}>
                       <td>{question.id}</td>
@@ -171,7 +179,8 @@ export default class AdminDashboard extends Component {
                           {question.title.length > 35 ? "..." : null}</td>
                       <td>{question.categoryName} </td>
                       <td>{question.level} </td>
-                    </tr>)
+                      <td> <DeleteButton onClick={this.deleteQuestion(question.id, i)}/> </td>
+                    </tr>) //TODO: Ask ziad about onClick assigment
                 })}
               </tbody>
             </table>

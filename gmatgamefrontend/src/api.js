@@ -76,6 +76,14 @@ class Api {
       .set('Authorization', `token ${token}`)
   }
 
+  deleteThisQuestion = (deleteQuesId, token) => {
+    return superagent
+      .del(`${API_HOST}/questions`)
+      .set('Content-Type', 'application/json')
+      .set('Authorization', `token ${token}`)
+      .send({id : deleteQuesId})
+  }
+
 }
 
 
