@@ -16,7 +16,7 @@ export default class AdminDashboard extends Component {
     this.state={
       error : null,
       successMSG: null,
-      page: 1
+      rowOffset: 0
     }
   }
 
@@ -53,10 +53,10 @@ export default class AdminDashboard extends Component {
       })
   }
 
-  fetchLeQuestions = (fromThisId, limitRows, categoryId, level) => {
+  fetchLeQuestions = (rowOffset, limitRows, categoryId, level ) => {
     console.log("FETCHING LE QUESTIONS");
     var arrayQuesObj = {};
-    arrayQuesObj.fromId = fromThisId || 1;
+    arrayQuesObj.rowOffset = rowOffset || 0;
     arrayQuesObj.limit = limitRows || 10;
     arrayQuesObj.catId = categoryId || undefined;
     arrayQuesObj.levelDifficulty = level || undefined;
@@ -66,33 +66,32 @@ export default class AdminDashboard extends Component {
       .then(res => {
         console.log(res.body);
         if (res.body.length > 0) { //in case we don't get an array of rows back, moreover in case the user selects on the placeholder option
-          this.setState({arrayQues: res.body, page: res.body[res.body.length - 1].id});
+          this.setState({arrayQues: res.body, rowOffset: this.state.rowOffset + Number(this.refs.limitQuestions.value) });
         }
       })
   }
 
   showDiffQuestions = () => {
-    this.setState({ page : 1}, //To reset the previous search we start at id = 1
+    this.setState({ rowOffset : 0}, //To reset the previous search we start at offset 0
       () => {
-        this.fetchLeQuestions(this.state.page, this.refs.limitQuestions.value,
+        this.fetchLeQuestions(this.state.rowOffset, this.refs.limitQuestions.value,
           (this.refs.categoryIdShowQuestions.value === "Category" ? undefined : this.refs.categoryIdShowQuestions.value ),
           (this.refs.levelShowQuestions.value === "Level" ? undefined : this.refs.levelShowQuestions.value))
       });
   }
 
-  //Instead of using componentDidUpdate we can pass a second callback param to setState which will execute after the state has been updated(which is async)
   nextPage = () => {
-        this.fetchLeQuestions(this.state.page, this.refs.limitQuestions.value,
+        this.fetchLeQuestions(this.state.rowOffset, this.refs.limitQuestions.value,
           (this.refs.categoryIdShowQuestions.value === "Category" ? undefined : this.refs.categoryIdShowQuestions.value ),
-          (this.refs.levelShowQuestions.value === "Level" ? undefined : this.refs.levelShowQuestions.value)) //TODO: Ask how come I need to wrap this in a function instead of just this.fetchLeQuestions?
+          (this.refs.levelShowQuestions.value === "Level" ? undefined : this.refs.levelShowQuestions.value))
   }
 
-  prevPage = () => {
-    if (this.state.page - Number(this.refs.limitQuestions.value) < 1) { return }
-    this.setState({ page : this.state.page - Number(this.refs.limitQuestions.value)},
+  prevPage = () => { //TODO: Ask why I need t o wrap the callback in () = > {}
+    if (this.state.rowOffset - Number(this.refs.limitQuestions.value) < 1) { return }
+    this.setState({ rowOffset : this.state.rowOffset - Number(this.refs.limitQuestions.value)*2 }, //We need multiply it by two as the offset goes up in fetchLeQuestions
       () => {
-        console.log("Page ", this.state.page);
-        this.fetchLeQuestions(this.state.page, this.refs.limitQuestions.value,
+        console.log("Page ", this.state.rowOffset);
+        this.fetchLeQuestions(this.state.rowOffset, this.refs.limitQuestions.value,
           (this.refs.categoryIdShowQuestions.value === "Category" ? undefined : this.refs.categoryIdShowQuestions.value ),
           (this.refs.levelShowQuestions.value === "Level" ? undefined : this.refs.levelShowQuestions.value))
       });
