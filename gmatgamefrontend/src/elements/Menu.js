@@ -3,6 +3,7 @@ import { Link } from 'react-router';
 import auth from '../auth.js';
 import Logout from "../Logout.js";
 
+
 class Menu extends Component {
 
     constructor(props) {
