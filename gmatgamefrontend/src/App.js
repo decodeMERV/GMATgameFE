@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
 import './App.css';
+import Menu from './modals/Menu';
 import auth from './auth.js';
 {/*import DescriptiveTextBox from './elements/DescriptiveTextBox';*/}
 
@@ -9,8 +10,11 @@ class App extends Component {
     super();
     this.state = {
       avatarUrl: "",
+      isMenuOpen: false
     }
   }
+
+  closeMenu = () => this.setState({ isMenuOpen: false })
 
   componentDidMount(){
     if (this.props.loggedIn){
@@ -40,13 +44,30 @@ class App extends Component {
   }
 
   render() {
+    let {isMenuOpen} = this.state
 
     return (
       <div className="App">
 
         <div className="App-navbar">
-          <Link to="/" className="App-navbar__title">
 
+          {/*<div className="App-menubar">*/}
+            <i className="fa fa-bars fa-2x menu-icon"
+               onClick={()=>this.setState({ isMenuOpen: !isMenuOpen })}/>
+            {/*<Link to="/" className="App-navbar__title">Dashboardly</Link>*/}
+
+          {/*</div>*/}
+
+          <Menu show={isMenuOpen} closeMenu={this.closeMenu}/>
+
+
+
+
+          {/* LOGO starts Below*/}
+
+
+
+          <Link to="/" className="App-navbar__title">
           <div>
             <img src={require("./gmat_logo.svg")} width="175px"/>
           </div>
@@ -79,6 +100,7 @@ class App extends Component {
         }
 
         </div>
+
         <div className="background-overlay">
         {React.cloneElement(this.props.children, {loggedInProp :this.props.loggedIn, username : this.state.username } )}
       </div>
