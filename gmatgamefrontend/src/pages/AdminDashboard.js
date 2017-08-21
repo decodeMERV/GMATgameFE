@@ -4,6 +4,7 @@ import DescriptiveTextBox from '../elements/DescriptiveTextBox';
 import DeleteButton from '../elements/DeleteButton';
 import api from '../api';
 import auth from '../auth';
+import Dropdown from "../elements/Dropdown";
 
 const ENTER = 13;
 const GMATLevels = ['200', '300', '400'];
@@ -19,9 +20,11 @@ export default class AdminDashboard extends Component {
       successMSG: null,
       rowOffset: 0
     }
+    this.elements = {}
   }
 
   handleUserInput = (e) => {
+    console.log(this.refs);
     if (this.state && this.state.error) {
       this.setState({ error: null })
     }
@@ -97,13 +100,11 @@ export default class AdminDashboard extends Component {
     this.fetchLeQuestions();
   }
 
-  deleteQuestion = (questionId, arrayIndex) => {
-    return (() => {
+  deleteQuestion = (questionId, arrayIndex) => () => {
       api.deleteThisQuestion(questionId, auth.getToken())
         .then( () => { //Note here how I chose not to refetch the data to lessen server load, instead make it disappear on front-end - Vincent Lau
           this.setState({ arrayQues : this.state.arrayQues.slice(0, arrayIndex).concat( this.state.arrayQues.slice(arrayIndex + 1) ) }) // Slice out the deleted item
         })
-    })
   }
 
   render () {
@@ -121,21 +122,24 @@ export default class AdminDashboard extends Component {
         {MultipleChoiceOptions.map( (letter) => {
           return <input type="text" onKeyUp={this.handleUserInput} placeholder={"Answer" + letter} ref={"answer"+letter} key={letter}/>
         })}
-        <select ref="correctAnswer" onChange={this.handleUserInput}>
-          {MultipleChoiceOptions.map( (letter) => {
-            return <option value={letter} key={letter}>{"Answer " + letter}</option>
-          })}
-        </select>
-        <select ref="level" onChange={this.handleUserInput}>
-          {GMATLevels.map( (level) => {
-            return <option value={level} key={level}>{"level " + level}</option>
-          })}
-        </select>
-        <select ref="categoryId" onChange={this.handleUserInput}>
-          {GMATCategories.map( (category, index) => {
-            return <option value={index + 1} key={category}>{category}</option>
-          })}
-        </select>
+        {/*<select ref="correctAnswer" onChange={this.handleUserInput}>*/}
+          {/*{MultipleChoiceOptions.map( (letter) => {*/}
+            {/*return <option value={letter} key={letter}>{"Answer " + letter}</option>*/}
+          {/*})}*/}
+        {/*</select>*/}
+        <Dropdown innerRef={ (ele) => {this.refs.correctAnswer = ele} } onChange={this.handleUserInput} passedArray={MultipleChoiceOptions} useItemValueOrIndex={true} textBefore={"Answer "} showItem={true} textAfter={false}/>
+        {/*<select ref="level" onChange={this.handleUserInput}>*/}
+          {/*{GMATLevels.map( (level) => {*/}
+            {/*return <option value={level} key={level}>{"level " + level}</option>*/}
+          {/*})}*/}
+        {/*</select>*/}
+        <Dropdown innerRef={ (ele) => {this.refs.level = ele} } onChange={this.handleUserInput} passedArray={GMATLevels} useItemValueOrIndex={true} textBefore={"Level "} showItem={true} textAfter={false}/>
+        {/*<select ref="categoryId" onChange={this.handleUserInput}>*/}
+          {/*{GMATCategories.map( (category, index) => {*/}
+            {/*return <option value={index + 1} key={category}>{category}</option>*/}
+          {/*})}*/}
+        {/*</select>*/}
+        <Dropdown innerRef={ (ele) => {this.refs.categoryId = ele} } onChange={this.handleUserInput} passedArray={GMATCategories} useItemValueOrIndex={false} textBefore={false} showItem={true} textAfter={false}/>
         <DescriptiveTextBox theText="Create" onClick={this.processCreateQuestion}/>
         <h2>Questions</h2>
         <select ref="levelShowQuestions" onChange={this.showDiffQuestions}>
