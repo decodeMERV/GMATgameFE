@@ -1,0 +1,72 @@
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+
+.menu {
+    width: 170px;
+    height:auto;
+    position: fixed;
+    top: 70px;
+    left: 0;
+    z-index: 10;
+    background-color: rgba(43, 43, 43, 0.8);
+    border-radius: 0px 0px 15px 0px;
+    /*background-color: #5c5c5c;*/
+    -webkit-transition: 0.2s;
+    -moz-transition: 0.2s;
+    -o-transition: 0.2s;
+    transition: 0.2s;
+    transform: translateX(-220px);
+    opacity: 0;
+    visibility: hidden;
+    color:white;
+
+    font-family: 'Nunito', sans-serif;
+
+}
+
+.menu.show {
+    transform: translateX(0px);
+    opacity: 1;
+    visibility: visible;
+}
+
+.menu-icon {
+    color:white;
+}
+
+
+.menu__header {
+    height: 10px;
+}
+
+/*.menu__avatar {*/
+    /*height: 60px;*/
+    /*width: 60px;*/
+    /*border-radius: 50%;*/
+    /*background: green;*/
+    /*margin: 1rem;*/
+/*}*/
+/*.no__image{*/
+    /*height: 60px;*/
+    /*width: 60px;*/
+    /*border-radius: 50%;*/
+    /*background: white;*/
+    /*margin: 1rem;*/
+/*}*/
+.menu__list {
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+
+    text-decoration: none;
+    color:white;
+    padding: 15px 0 25px 25px;
+    line-height: 140%;
+}
+
+.menu__item {
+
+    color:white;
+    text-decoration: none;
+    line-height: 2rem;
+
+}
