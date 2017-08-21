@@ -25,7 +25,7 @@ export default class AdminDashboard extends Component {
   }
 
   handleUserInput = (e) => {
-    if (this.state && this.state.error) {
+    if (this.state && this.state.error) { //clear error message on the page
       this.setState({ error: null })
     }
     if (this.state && this.state.successMSG) {
@@ -56,7 +56,12 @@ export default class AdminDashboard extends Component {
 
     api.createQuestion(questionObj, auth.getToken())
       .then( (res) => {
-        this.setState({successMSG: res.body.message})
+        this.setState({successMSG: res.body.message});
+        for (var ref in this.refs){ //To clear the input fields
+          if ( ref.match(/^answer[ABCDE]|title/) ){
+            (this.refs[ref].value) = "";
+          }
+        }
       })
       .catch( (error) => {
         this.setState({error: "Error posting to questions table" + error})
