@@ -63,10 +63,25 @@ class Api {
 
   createQuestion = (insertQuesObject, token) => {
     return superagent
-      .post(`${API_HOST}/questions/insert`)
+      .post(`${API_HOST}/questions`)
       .set('Content-Type', 'application/json')
       .set('Authorization', `token ${token}`)
       .send(insertQuesObject)
+  }
+
+  getArrayOfQuestions = (queryQuestionsObj, token) => {
+    return superagent
+      .get(`${API_HOST}/questions/?rowOffset=${queryQuestionsObj.rowOffset}&limit=${queryQuestionsObj.limit}&categoryId=${queryQuestionsObj.catId}&level=${queryQuestionsObj.levelDifficulty}`)
+      .set('Content-Type', 'application/json')
+      .set('Authorization', `token ${token}`)
+  }
+
+  deleteThisQuestion = (deleteQuesId, token) => {
+    return superagent
+      .del(`${API_HOST}/questions`)
+      .set('Content-Type', 'application/json')
+      .set('Authorization', `token ${token}`)
+      .send({id : deleteQuesId})
   }
 
 }
