@@ -8,7 +8,10 @@ export default class Dropdown extends React.Component {
     if (this.props.textBefore) {
       str = str + this.props.textBefore;
     }
-    str = str + item;
+
+    if(this.props.showItem){
+      str = str + item;
+    }
 
     if (this.props.textAfter) {
       str = str + this.props.textAfter;
