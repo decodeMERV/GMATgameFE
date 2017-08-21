@@ -5,13 +5,18 @@ import api from '../api';
 import auth from '../auth';
 
 const ENTER = 13;
+const GMATLevels = ['200', '300', '400'];
+const GMATCategories = ['Math', 'Verbal', 'Writing', 'Reasoning', 'Data'];
+const MultipleChoiceOptions = ['A', 'B', 'C', 'D', 'E'];
+const GMATQuestionLimit = ['10', '25', '50'];
 
 export default class AdminDashboard extends Component {
   constructor(){
     super();
     this.state={
       error : null,
-      successMSG: null
+      successMSG: null,
+      page: 1
     }
   }
 
@@ -31,7 +36,7 @@ export default class AdminDashboard extends Component {
     var questionObj = {};
 
     for (var ref in this.refs){
-      questionObj[ref] = (this.refs[ref].value);
+      questionObj[ref] = (this.refs[ref].value); //minor inefficiency here as we are attaching a few too many refs
       if (!this.refs[ref].value) { //Check if form is empty
         this.setState({error: "Fill in the form!"})
         return;
@@ -49,6 +54,7 @@ export default class AdminDashboard extends Component {
   }
 
   fetchLeQuestions = (fromThisId, limitRows, categoryId, level) => {
+    console.log("FETCHING LE QUESTIONS");
     var arrayQuesObj = {};
     arrayQuesObj.fromId = fromThisId || 1;
     arrayQuesObj.limit = limitRows || 10;
@@ -60,13 +66,36 @@ export default class AdminDashboard extends Component {
       .then(res => {
         console.log(res.body);
         if (res.body.length > 0) { //in case we don't get an array of rows back, moreover in case the user selects on the placeholder option
-          this.setState({arrayQues: res.body});
+          this.setState({arrayQues: res.body, page: res.body[res.body.length - 1].id});
         }
       })
   }
 
   showDiffQuestions = () => {
-    this.fetchLeQuestions(1, this.refs.limitQuestions.value, this.refs.categoryIdShowQuestions.value, this.refs.levelShowQuestions.value);
+    this.setState({ page : 1}, //To reset the previous search we start at id = 1
+      () => {
+        this.fetchLeQuestions(this.state.page, this.refs.limitQuestions.value,
+          (this.refs.categoryIdShowQuestions.value === "Category" ? undefined : this.refs.categoryIdShowQuestions.value ),
+          (this.refs.levelShowQuestions.value === "Level" ? undefined : this.refs.levelShowQuestions.value))
+      });
+  }
+
+  //Instead of using componentDidUpdate we can pass a second callback param to setState which will execute after the state has been updated(which is async)
+  nextPage = () => {
+        this.fetchLeQuestions(this.state.page, this.refs.limitQuestions.value,
+          (this.refs.categoryIdShowQuestions.value === "Category" ? undefined : this.refs.categoryIdShowQuestions.value ),
+          (this.refs.levelShowQuestions.value === "Level" ? undefined : this.refs.levelShowQuestions.value)) //TODO: Ask how come I need to wrap this in a function instead of just this.fetchLeQuestions?
+  }
+
+  prevPage = () => {
+    if (this.state.page - Number(this.refs.limitQuestions.value) < 1) { return }
+    this.setState({ page : this.state.page - Number(this.refs.limitQuestions.value)},
+      () => {
+        console.log("Page ", this.state.page);
+        this.fetchLeQuestions(this.state.page, this.refs.limitQuestions.value,
+          (this.refs.categoryIdShowQuestions.value === "Category" ? undefined : this.refs.categoryIdShowQuestions.value ),
+          (this.refs.levelShowQuestions.value === "Level" ? undefined : this.refs.levelShowQuestions.value))
+      });
   }
 
   componentDidMount() {
@@ -74,6 +103,7 @@ export default class AdminDashboard extends Component {
   }
 
   render () {
+    console.log("RENDERED ADMIN");
     return (
       <div>
         {(this.state.successMSG !== null) ?
@@ -85,43 +115,47 @@ export default class AdminDashboard extends Component {
           :
           null}
         <input ref="title" type="text" onKeyUp={this.handleUserInput} placeholder={"Question"}/>
-        {['A', 'B', 'C', 'D', 'E'].map( (letter) => {
+        {MultipleChoiceOptions.map( (letter) => {
           return <input type="text" onKeyUp={this.handleUserInput} placeholder={"Answer" + letter} ref={"answer"+letter} key={letter}/>
         })}
         <select ref="correctAnswer" onChange={this.handleUserInput}>
-          {['A', 'B', 'C', 'D', 'E'].map( (letter) => {
+          {MultipleChoiceOptions.map( (letter) => {
             return <option value={letter} key={letter}>{"Answer " + letter}</option>
           })}
         </select>
         <select ref="level" onChange={this.handleUserInput}>
-          {['200', '300', '400'].map( (level) => {
+          {GMATLevels.map( (level) => {
             return <option value={level} key={level}>{"level " + level}</option>
           })}
         </select>
         <select ref="categoryId" onChange={this.handleUserInput}>
-          {['Math', 'Verbal', 'Writing', 'Reasoning', 'Data'].map( (category, index) => {
+          {GMATCategories.map( (category, index) => {
             return <option value={index + 1} key={category}>{category}</option>
           })}
         </select>
         <DescriptiveTextBox theText="Create" onClick={this.processCreateQuestion}/>
         <h2>Questions</h2>
-        <select ref="categoryIdShowQuestions" onChange={this.showDiffQuestions}>
-          {['Math', 'Verbal', 'Writing', 'Reasoning', 'Data'].map((category, index) => {
-            return <option value={index + 1} key={category}>{category}</option>
-          })}
-        </select>
         <select ref="levelShowQuestions" onChange={this.showDiffQuestions}>
-          {['200', '300', '400'].map((level) => {
+          <option>Level</option>
+          {GMATLevels.map((level) => {
             return <option value={level} key={level}>{"level " + level}</option>
           })}
         </select>
-        <select ref="limitQuestions" onChange={this.showDiffQuestions}>
-          {['10', '25', '50'].map((numberOfRows) => {
-            return <option value={numberOfRows} key={numberOfRows}>{numberOfRows}</option>
+        <select ref="categoryIdShowQuestions" onChange={this.showDiffQuestions}>
+          <option>Category</option>
+          {GMATCategories.map((category, index) => {
+            return <option value={index + 1} key={category}>{category}</option>
           })}
         </select>
+        <select ref="limitQuestions" onChange={this.showDiffQuestions}>
+          {GMATQuestionLimit.map((numberOfRows) => {
+            return <option value={numberOfRows} key={numberOfRows}>{numberOfRows + " Per Page"}</option>
+          })}
+        </select>
+        <button onClick={this.prevPage}>{"<"}</button>
+        <button onClick={this.nextPage}>{">"}</button>
         {
-          Array.isArray(this.state.arrayQues) ?
+          Array.isArray(this.state.arrayQues) && this.state.arrayQues.length > 0 ?
             <table>
               <tbody>
                 <tr>
