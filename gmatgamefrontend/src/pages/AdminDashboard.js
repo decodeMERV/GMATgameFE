@@ -59,11 +59,9 @@ export default class AdminDashboard extends Component {
     arrayQuesObj.limit = limitRows || 10;
     arrayQuesObj.catId = categoryId || undefined;
     arrayQuesObj.levelDifficulty = level || undefined;
-    console.log(arrayQuesObj);
 
     api.getArrayOfQuestions(arrayQuesObj, auth.getToken())
       .then(res => {
-        console.log(res.body);
         if (res.body.length > 0) { //in case we don't get an array of rows back, moreover in case the user selects on the placeholder option
           this.setState({arrayQues: res.body, rowOffset: this.state.rowOffset + Number(this.refs.limitQuestions.value) });
         }
@@ -82,7 +80,7 @@ export default class AdminDashboard extends Component {
   nextPage = () => {
         this.fetchLeQuestions(this.state.rowOffset, this.refs.limitQuestions.value,
           (this.refs.categoryIdShowQuestions.value === "Category" ? undefined : this.refs.categoryIdShowQuestions.value ),
-          (this.refs.levelShowQuestions.value === "Level" ? undefined : this.refs.levelShowQuestions.value))
+          (this.refs.levelShowQuestions.value === "Level" ? undefined : this.refs.levelShowQuestions.value)) //Don't need to add to this.state.rowOffset in this function, as it gets added during the fetchLeQuestions
   }
 
   prevPage = () => { //TODO: Ask why I need t o wrap the callback in () = > {}
@@ -109,7 +107,6 @@ export default class AdminDashboard extends Component {
   }
 
   render () {
-    console.log("RENDERED ADMIN");
     return (
       <div>
         {(this.state.successMSG !== null) ?
@@ -175,8 +172,8 @@ export default class AdminDashboard extends Component {
                   return (
                     <tr key={question.id}>
                       <td>{question.id}</td>
-                      <td>{question.title.substring(0, 36)}
-                          {question.title.length > 35 ? "..." : null}</td>
+                      <td>{question.title.substring(0, 21)}
+                          {question.title.length > 20 ? "..." : null}</td>
                       <td>{question.categoryName} </td>
                       <td>{question.level} </td>
                       <td> <DeleteButton onClick={this.deleteQuestion(question.id, i)}/> </td>
