@@ -20,8 +20,9 @@ table, caption, tbody, tfoot, thead, tr, th, td, header {
   font-family: Nunito, helvetica;
   vertical-align: baseline;
   line-height: normal;
+  text-decoration: none;
 }
-/* remember to define focus styles! */
+
 :focus {
   outline: 0;
 }
@@ -31,6 +32,11 @@ body {
   color: #3e3a3a;
   background: #eeeef2;
   background-size: cover;
+}
+
+.gmatimage {
+
+  padding-left: 20px;
 }
 
 /*.background-overlay {*/
@@ -94,7 +100,6 @@ blockquote, q {
     /*display: block;*/
     /*margin: 0 auto;*/
 /*}*/
-
 
 
 .play-button{
