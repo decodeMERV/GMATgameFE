@@ -2,26 +2,24 @@ import React from 'react';
 import './ProfileBox.css';
 
 export default (props) => {
-  console.log(props.button, 'inside profile box')
+
   return (
     <div className="profilebox">
       <h2>Username</h2>
-      {props.editOpen === true && props.button === 'name' ?
-      <input name='username' defaultValue={props.name} onChange={props.onChange} onKeyUp={props.onKeyUp}/> :
+      {props.editOpen === true  ? <input name='username' defaultValue={props.name} onChange={props.onChange} onKeyUp={props.onKeyUp}/> :
       <h3>{props.name}</h3>}
-      <button name='name' onClick={(e) => props.toggle(e)}>Edit</button>
 
-      <h2>E-Mail</h2>
-      {props.editOpen === true && props.button === 'email' ?
-      <input name='email' defaultValue={props.contact} onChange={props.onChange} onKeyUp={props.onKeyUp}/> :
+      <h2>E-mail</h2>
+      {props.editOpen === true ? <input name='email' defaultValue={props.contact} onChange={props.onChange} onKeyUp={props.onKeyUp}/> :
       <h3>{props.contact}</h3>}
-      <button name='email' onClick={(e) => props.toggle(e)}>Edit</button>
 
       <h2>Interests</h2>
-      {props.editOpen === true && props.button === 'aboutMe' ?
-       <input name='interests' defaultValue={props.aboutMe} onChange={props.onChange} onKeyUp={props.onKeyUp}/> :
+      {props.editOpen === true  ? <input name='interests' defaultValue={props.aboutMe} onChange={props.onChange} onKeyUp={props.onKeyUp}/> :
        <h3>{props.aboutMe}</h3>}
-      <button name="aboutMe" onClick={(e) => props.toggle(e)}>Edit</button>
+
+      <button name="edit" onClick={(e) => props.openingEdit(e)}>Edit Profile</button>
+      {props.editOpen === true ? <button name="done" onClick={props.closingEdit} >done</button> : ''}
+      {props.closeEdit === true ? props.editOpen === false : ''}
     </div>
   )
 }

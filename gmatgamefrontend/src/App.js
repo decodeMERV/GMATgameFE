@@ -40,7 +40,7 @@ class App extends Component {
   }
 
   render() {
-    console.log("RENDERED");
+  
     return (
       <div className="App">
         <div className="App-navbar">
