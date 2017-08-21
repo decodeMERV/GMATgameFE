@@ -46,18 +46,20 @@ class App extends Component {
 
         <div className="App-navbar">
           <Link to="/" className="App-navbar__title">
-          </Link>
+
           <div>
-            <img src={require("./gmat_logo.svg")} style={{width: 200, height: 50, marginLeft: 10 }} />
+            <img src={require("./gmat_logo.svg")} />
           </div>
+
+          </Link>
 
           {
             auth.isLoggedIn() ?
                 <div className="gravatarIcon">
                   <Link to="/dashboard">
                     <img src={this.state.avatarUrl} alt="gravatarIcon" style={{borderRadius:"50%", maxWidth:"3rem", backgroundColor:"black"}}/>
-                      </Link>
-                    <div>
+                  </Link>
+                  <div>
                         <p className="p-nav"
                           onClick={() => {
                               auth.logout()

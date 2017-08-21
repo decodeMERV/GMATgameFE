@@ -15,6 +15,7 @@
   -ms-flex-pack: justify;
   justify-content: space-between;
   align-items: center;
-  border: white 1px solid;
+  /*border: white 1px solid;*/
+  background-color: #2b2b2b;
 
 }

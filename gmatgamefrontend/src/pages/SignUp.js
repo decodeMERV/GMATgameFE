@@ -40,20 +40,20 @@ export default class LoginHomePage extends Component {
 
         <div className="SignupBox">
 
-            <p>E-Mail</p>
-            <input type="text" ref="email" defaultValue='login'
+            <p className="psign">E-Mail</p>
+            <input type="text" ref="email" placeholder='login'
                    onKeyUp={this._handleTyping}
             />
-            <p>Password</p>
-            <input type="password" ref="password" defaultValue='password'
+            <p className="psign">Password</p>
+            <input type="password" ref="password" placeholder='password'
                    onKeyUp={this._handleTyping}
             />
-            <p>Username</p>
-            <input type="username" ref="username" defaultValue='username'
+            <p className="psign">Username</p>
+            <input type="text" ref="username" placeholder='username'
                    onKeyUp={this._handleTyping}
             />
-            <p>Interests</p>
-            <input type="interests" ref="interests" defaultValue='interests'
+            <p className="psign">Interests</p>
+            <input type="text" ref="interests" placeholder='interests'
                    onKeyUp={this._handleTyping}
             />
             <button className="signupbutton" onClick={this._handleSignUp}>Create an Account</button>

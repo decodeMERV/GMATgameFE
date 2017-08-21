@@ -33,8 +33,8 @@ export default class LeaderBoard extends Component {
   render() {
     return (
       <div className="LB">
-        <h2> All-Time Leaders </h2>
-        <p> Can you make it to our hall of fame?</p>
+        <h1> Hall of Fame </h1>
+        {/*<p> Can you make it to our hall of fame?</p>*/}
           <table className="rwd-table">
 
 
