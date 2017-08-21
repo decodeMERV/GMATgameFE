@@ -48,7 +48,7 @@ class App extends Component {
           <Link to="/" className="App-navbar__title">
 
           <div>
-            <img src={require("./gmat_logo.svg")} />
+            <img src={require("./gmat_logo.svg")} width="175px"/>
           </div>
 
           </Link>
@@ -57,7 +57,7 @@ class App extends Component {
             auth.isLoggedIn() ?
                 <div className="gravatarIcon">
                   <Link to="/dashboard">
-                    <img src={this.state.avatarUrl} alt="gravatarIcon" style={{borderRadius:"50%", maxWidth:"3rem", backgroundColor:"black"}}/>
+                    <img src={this.state.avatarUrl} alt="gravatarIcon" style={{borderRadius:"50%", maxWidth:"3rem", backgroundColor:"#2b2b2b"}}/>
                   </Link>
                   <div>
                         <p className="p-nav"
@@ -72,10 +72,12 @@ class App extends Component {
                             logout</p>
                       </div>
                     {/*<p>{this.state.username}</p>*/}
+
                 </div>
             :
             null
         }
+
         </div>
         <div className="background-overlay">
         {React.cloneElement(this.props.children, {loggedInProp :this.props.loggedIn, username : this.state.username } )}
