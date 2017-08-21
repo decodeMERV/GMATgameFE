@@ -68,6 +68,13 @@ class Api {
       .set('Authorization', `token ${token}`)
       .send(insertQuesObject)
   }
+  editProfile = (username, email, interests, token) => (
+    superagent
+    .patch(`${API_HOST}/auth/me`)
+    .set('Content-Type', 'application/json')
+    .set('Authorization', `token ${token}`)
+    .send({ username, email, interests, token})
+  )
 
 }
 
