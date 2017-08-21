@@ -132,6 +132,13 @@ export default class PlayGame extends Component {
         </div>
         <div className="game-container">
           <Question questionText={this.state.Q}/>
+          <div className="next">
+            { this.state.isPlayerCorrect !== undefined ?
+              <DescriptiveTextBox theText="Next Question" bgColor="none" color="#444444" border="1px solid #b1bdcc" radius="4px" onClick={this.nextQuestionFetch}/>
+              :
+              null
+            }
+          </div>
           {/*The below ternaries are to check if the player has yet to click on the multiple choice options, if so we assign an onClick handler, if they have we begin to color them accordingly.*/}
           {['A','B','C','D','E'].map(ans =>
             <Answer answerText={this.state[ans]}
@@ -139,13 +146,12 @@ export default class PlayGame extends Component {
                     bgColor={this.state.isPlayerCorrect !== undefined ? this.colorChoices(ans) : null}
                     key={ans}/>
           )}
-          <div className="next">
-          { this.state.isPlayerCorrect !== undefined ?
-            <DescriptiveTextBox theText="NEXT" bgColor="none" onClick={this.nextQuestionFetch}/>
-            :
-            null
-          }
-          </div>
+
+
+
+
+
+
         </div>
       </div>
     )

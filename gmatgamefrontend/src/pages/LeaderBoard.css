@@ -11,7 +11,7 @@ table, th, td {
     text-align: center;
     color: #444444;
     background-color: white;
-    border: 1px solid #b1bdcc;
+
 
 
 }
@@ -19,9 +19,9 @@ table, th, td {
 
 p {
     font-color:#444444;
-    font-size: larger;
-    font-style: italic;
-    padding-top:1rem;
+    /*font-size: larger;*/
+    /*font-style: italic;*/
+    /*padding-top:1rem;*/
     font-family: 'Nunito', sans-serif;
     margin:auto;
     text-align: center;
@@ -46,11 +46,13 @@ tr:hover {
 th {
 }
 
-h2 {
+h1 {
+    font-size: larger;
     font-family: 'Nunito', sans-serif;
     padding: 10px 0px 10px 0px;
     text-align: center;
-    color:#b1bdcc;
+    /*color:#b1bdcc;*/
+    color:white;
     background-color: #2b2b2b;
     /*background-color: #33d87a;*/
 }
@@ -68,7 +70,7 @@ table {
 
 th {
     padding: 1rem;
-    background-color: ##4ebb4b;
+    background-color: #4ebb4b;
 }
 
 td {
