@@ -58,7 +58,7 @@ class App extends Component {
 
           <Link to="/" className="App-navbar__title">
             <div className="gmatimage">
-              <img src={require("./gmat_logo.svg")} width="160px"/>
+              <img src={require("./gmax_logo_v2.svg")} width="160px" height="100px"/>
             </div>
           </Link>
 

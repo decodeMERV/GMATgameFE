@@ -14,7 +14,7 @@ const GMATQuestionLimit = ['10', '25', '50'];
 export default class AdminDashboard extends Component {
   constructor(){
     super();
-    this.state={
+    this.state = {
       error : null,
       successMSG: null,
       rowOffset: 0
@@ -108,7 +108,7 @@ export default class AdminDashboard extends Component {
 
   render () {
     return (
-      <div>
+      <div className="admin-container">
         {(this.state.successMSG !== null) ?
           <DescriptiveTextBox theText={this.state.successMSG} bgColor="green"/>
           :
@@ -117,10 +117,14 @@ export default class AdminDashboard extends Component {
           <DescriptiveTextBox theText={this.state.error} bgColor="red"/>
           :
           null}
+
+          <h1>Insert Question & Answer Choices</h1>
         <input ref="title" type="text" onKeyUp={this.handleUserInput} placeholder={"Question"}/>
         {MultipleChoiceOptions.map( (letter) => {
           return <input type="text" onKeyUp={this.handleUserInput} placeholder={"Answer" + letter} ref={"answer"+letter} key={letter}/>
         })}
+
+          <h1>Insert Correct Answer, Category, Levels</h1>
         <select ref="correctAnswer" onChange={this.handleUserInput}>
           {MultipleChoiceOptions.map( (letter) => {
             return <option value={letter} key={letter}>{"Answer " + letter}</option>
@@ -136,8 +140,9 @@ export default class AdminDashboard extends Component {
             return <option value={index + 1} key={category}>{category}</option>
           })}
         </select>
-        <DescriptiveTextBox theText="Create" onClick={this.processCreateQuestion}/>
-        <h2>Questions</h2>
+        <button className="create-button" onClick={this.processCreateQuestion}>Create</button>
+
+        <h1>Show Questions</h1>
         <select ref="levelShowQuestions" onChange={this.showDiffQuestions}>
           <option>Level</option>
           {GMATLevels.map((level) => {
