@@ -20,7 +20,6 @@ table, caption, tbody, tfoot, thead, tr, th, td, header {
   font-family: Nunito, helvetica;
   vertical-align: baseline;
   line-height: normal;
-  min-width: 70%;
 }
 /* remember to define focus styles! */
 :focus {
@@ -128,5 +127,5 @@ blockquote, q {
 }
 
 .nav-dashboard {
-  
+
 }
