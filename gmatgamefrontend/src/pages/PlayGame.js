@@ -6,6 +6,7 @@ import Answer from '../elements/Answer';
 import api from '../api';
 import Timer from '../elements/Timer';
 
+
 export default class PlayGame extends Component {
   constructor(){
     super();
@@ -62,7 +63,7 @@ export default class PlayGame extends Component {
 
     if (this.state.correctAns === answer && this.state.isPlayerCorrect === undefined){
 
-      console.log("this.props.username: ", this.props.username)
+      //console.log("this.props.username: ", this.props.username)
 
       this.setState({
         isPlayerCorrect : true,
@@ -104,10 +105,10 @@ export default class PlayGame extends Component {
 
   colorChoices = (answersAtoE) => {
     if (answersAtoE === this.state.correctAns) {
-      return "green";
+      return "#d2f9d2";
     }
     else if (answersAtoE !== this.state.correctAns && answersAtoE === this.state.playerChoice){
-      return "red";
+      return "#f9a1a1";
     }
   }
 
@@ -123,16 +124,21 @@ export default class PlayGame extends Component {
   render(){
     return(
       <div>
-        <div className="timer-container">
+        <div className="scoreboard-container">
           <Timer time={this.state.timeElapsed} />
-        </div>
-        <div className="description-container">
-          <DescriptiveTextBox bgColor="#25a521" color="white" theText={"SCORE: " + this.state.score}/>
-          <DescriptiveTextBox bgColor="#0790f7" color="white" theText={"Category: " + this.state.cat_name}/>
-          <DescriptiveTextBox bgColor="#f03b3b" color="white" theText={"Level: " + this.state.level}/>
+          <DescriptiveTextBox bgColor="none" color="white" theText={"SCORE: " + this.state.score}/>
+          <DescriptiveTextBox bgColor="none" color="white" theText={this.state.cat_name}/>
+          <DescriptiveTextBox bgColor="none" color="white" theText={"Level: " + this.state.level}/>
         </div>
         <div className="game-container">
           <Question questionText={this.state.Q}/>
+          <div className="next">
+            { this.state.isPlayerCorrect !== undefined ?
+              <DescriptiveTextBox theText="Next Question" bgColor="none" color="#444444" border="1px solid #b1bdcc" radius="4px" onClick={this.nextQuestionFetch}/>
+              :
+              null
+            }
+          </div>
           {/*The below ternaries are to check if the player has yet to click on the multiple choice options, if so we assign an onClick handler, if they have we begin to color them accordingly.*/}
           {['A','B','C','D','E'].map(ans =>
             <Answer answerText={this.state[ans]}
@@ -140,13 +146,12 @@ export default class PlayGame extends Component {
                     bgColor={this.state.isPlayerCorrect !== undefined ? this.colorChoices(ans) : null}
                     key={ans}/>
           )}
-          <div className="next">
-          { this.state.isPlayerCorrect !== undefined ?
-            <DescriptiveTextBox theText="NEXT" bgColor="#f19506" onClick={this.nextQuestionFetch}/>
-            :
-            null
-          }
-          </div>
+
+
+
+
+
+
         </div>
       </div>
     )

@@ -6,8 +6,8 @@ export default (props) => {
         <div
             style=
                 {{
-                    backgroundColor: props.bgColor ? props.bgColor : "lightgray",
-                    color : props.color ? props.color : "black",
+                    backgroundColor: props.bgColor ? props.bgColor : "white",
+                    // color : props.color ? props.color : "black",
                     fontSize : props.fontSize ? props.fontSize : "1rem",
 
                 }}

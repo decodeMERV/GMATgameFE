@@ -1,4 +1,13 @@
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+
 .timer {
-  font-size: 2em;
-  font-weight: bold;
+font-family: 'Nunito', sans-serif;
+  /*font-size: larger;*/
+
+  color: white;
+  display: table;
+  /*margin:auto;*/
+  padding: 10px;
+  line-height: 1;
+  cursor: pointer;
 }
