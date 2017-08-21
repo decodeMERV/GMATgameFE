@@ -39,7 +39,6 @@ export default class UserProfile extends Component {
    render(){
     return (
       <div className="profile-container">
-        <img src={this.state.avatarUrl} alt="gravatar" style={{borderRadius:"50%"}}/>
         <ProfileBox name={this.state.username} contact={this.state.email} aboutMe={this.state.interests} />
       </div>
     );

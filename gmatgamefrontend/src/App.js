@@ -43,46 +43,43 @@ class App extends Component {
   }
 
   render() {
+
     return (
       <div className="App">
 
-          <div className="App-navbar">
+        <div className="App-navbar">
+          <Link to="/" className="App-navbar__title">
 
-            <Link to="/" className="App-navbar__title">
-            </Link>
+          <div>
+            <img src={require("./gmat_logo.svg")} />
+          </div>
 
-            <i className="fa fa-bars fa-2x menu-icon" />
+          </Link>
 
-            <div>
-              <img src={require("./gmat_logo.svg")} alt="logo" style={{width: 200, height: 50, marginLeft: 10 }} />
-            </div>
+          {
+            auth.isLoggedIn() ?
+                <div className="gravatarIcon">
+                  <Link to="/dashboard">
+                    <img src={this.state.avatarUrl} alt="gravatarIcon" style={{borderRadius:"50%", maxWidth:"3rem", backgroundColor:"black"}}/>
+                  </Link>
+                  <div>
+                        <p className="p-nav"
+                          onClick={() => {
+                              auth.logout()
+                              .then( () => {
+                                this.setState({avatarUrl: "", username:undefined});
+                                this.props.router.push('/');
+                              })
+                            }}
+                            >
+                            logout</p>
+                      </div>
+                    {/*<p>{this.state.username}</p>*/}
+                </div>
+            :
+            null
+        }
 
-            {
-              auth.isLoggedIn() ?
-                  <div className="gravatarIcon">
-                    <Link to="/dashboard">
-                      <img src={this.state.avatarUrl} alt="gravatarIcon" style={{borderRadius:"50%", maxWidth:"3rem", backgroundColor:"black"}}/>
-                        </Link>
-                      <div>
-                          <p className="p-nav"
-                            onClick={() => {
-                                auth.logout()
-                                .then( () => {
-                                  this.setState({avatarUrl: "", username:undefined});
-                                  this.props.router.push('/');
-                                })
-                              }}
-                              >
-                              logout</p>
-                        </div>
-                      {/*<p>{this.state.username}</p>*/}
-                  </div>
-              :
-              null
-          }
-        </div>
-          <div className="background-overlay">
-          {React.cloneElement(this.props.children, {loggedInProp :this.props.loggedIn, username : this.state.username } )}
         </div>
       </div>
     );

@@ -7,7 +7,7 @@ export default (props) => {
       style=
         {{
           backgroundColor: props.bgColor ? props.bgColor : "white",
-          color : props.color ? props.color : "black",
+          // color : props.color ? props.color : "black",
           fontSize : props.fontSize ? props.fontSize : "1rem",
         }}
       className="question"

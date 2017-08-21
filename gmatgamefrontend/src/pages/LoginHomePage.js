@@ -35,16 +35,20 @@ export default class LoginHomePage extends Component {
 
   render() {
     return (
-      <div className="login">
-        <input type="text" ref="email"
-               onKeyUp={this._handleTyping}
-        />
-        <input type="password" ref="password"
-               onKeyUp={this._handleTyping}
-        />
-        <button className="logonbutton" onClick={this._handleLogin}>Login</button>
-        <Link to="/SignUp" className="signupbutton">Create an Account</Link>
-        <h3>{this.state.theError}</h3>
+      <div className="logger">
+        <div className="login">
+          <p className="plog">E-Mail</p>
+          <input type="text" ref="email" placeholder="login"
+                 onKeyUp={this._handleTyping}
+          />
+          <p className="plog">Password</p>
+          <input type="password" ref="password" placeholder="password"
+                 onKeyUp={this._handleTyping}
+          />
+          <button className="logonbutton" onClick={this._handleLogin}>Login</button>
+          <Link to="/SignUp" className="signupbutton">Create an Account</Link>
+          <h3>{this.state.theError}</h3>
+        </div>
       </div>
     )
   }
