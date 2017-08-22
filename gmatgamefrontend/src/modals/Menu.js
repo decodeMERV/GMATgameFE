@@ -15,7 +15,6 @@ class Menu extends Component {
   }
 
   componentDidMount(){
-    // this.fetchProfilePic()
   }
 
   componentDidUpdate(prevProps, prevState){
