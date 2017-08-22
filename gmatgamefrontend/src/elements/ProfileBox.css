@@ -7,16 +7,27 @@
     justify-content: center;
     margin-top: 5%;
     align-items: center;
+    line-height: 1.5px;
 
+}
+
+h2 {
+  font-size: 1.6rem;
+  font-weight: bold;
+  margin-bottom: 0.25em;
+}
+
+.profilefield:last-of-type {
+  margin-bottom: 3rem;
 }
 
 .profilebox {
   overflow-wrap: break-word;
-  padding: 0.5rem;
-  border: solid 0.1rem rgb(115, 114, 114);
+  padding: 1rem 5rem 1rem 5rem;
+  border: solid 0.1rem #33d87a;
   min-width: 50vw;
   max-width: 60vw;
-  border-radius: 15px;
+  border-radius: 25px;
   display: -ms-flexbox;
   display: flex;
   -ms-flex-flow: wrap column;
@@ -24,10 +35,32 @@
   -ms-flex-pack: center;
   justify-content: center;
   text-align: center;
-  margin: 3%;
+}
+input[type=text]:focus{
+    background-color: yellow;
+
+}
+.cancel-button{
+  background-color: #ff3333;
 }
 
+button{
+  color: white;
+  background-color: #1ed760;
+  padding: 5% 5%;
+  min-width: 10%;
+  border-radius: 4px;
+  border: none;
+  margin: 2%;
+}
 
+.profilefield{
+  margin-top: 5%;
+}
+
+.profilefield:first-of-type {
+  margin-top:10%
+}
 /*
 .profilebox {
   overflow-wrap: break-word;

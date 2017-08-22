@@ -3,7 +3,7 @@ import { Link } from 'react-router';
 import './App.css';
 import Menu from './modals/Menu';
 import auth from './auth.js';
-{/*import DescriptiveTextBox from './elements/DescriptiveTextBox';*/}
+/*import DescriptiveTextBox from './elements/DescriptiveTextBox';*/
 
 class App extends Component {
   constructor() {
@@ -51,6 +51,7 @@ class App extends Component {
 
         <div className="App-navbar">
 
+
           {/*<div className="App-menubar">*/}
             <i className="fa fa-bars fa-2x menu-icon"
                onClick={()=>this.setState({ isMenuOpen: !isMenuOpen })}/>
@@ -69,7 +70,8 @@ class App extends Component {
 
           <Link to="/" className="App-navbar__title">
           <div className="gmatimage">
-            <img src={require("./gmat_logo.svg")} width="160px"/>
+            <img src={require("./gmat_logo.svg")} width="160px" alt='noimage'/>
+
           </div>
 
           </Link>
