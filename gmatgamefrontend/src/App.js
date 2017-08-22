@@ -3,7 +3,21 @@ import { Link } from 'react-router';
 import './App.css';
 import Menu from './modals/Menu';
 import auth from './auth.js';
+import onClickOutside from 'react-onclickoutside';
+
 /*import DescriptiveTextBox from './elements/DescriptiveTextBox';*/
+
+const Burger = onClickOutside(class extends Component {
+  handleClickOutside() {
+    this.props.onClickOutside();
+  }
+  render() {
+    return (
+      <i className="fa fa-bars fa-2x menu-icon"
+         onClick={this.props.onClick}/>
+    )
+  }
+})
 
 class App extends Component {
   constructor() {
@@ -53,13 +67,17 @@ class App extends Component {
 
 
           {/*<div className="App-menubar">*/}
-            <i className="fa fa-bars fa-2x menu-icon"
-               onClick={()=>this.setState({ isMenuOpen: !isMenuOpen })}/>
-            {/*<Link to="/" className="App-navbar__title">Dashboardly</Link>*/}
+          <Burger
+            onClick={()=>this.setState({ isMenuOpen: !isMenuOpen })}
+            onClickOutside={() => this.setState({isMenuOpen: false})}
+            outsideClickIgnoreClass="menu__item"
+          />
+
+          {/*<Link to="/" className="App-navbar__title">Dashboardly</Link>*/}
 
           {/*</div>*/}
 
-          <Menu show={isMenuOpen} closeMenu={this.closeMenu}/>
+          <Menu show={isMenuOpen} onNavigate={() => this.setState({isMenuOpen: false})} />
 
 
 

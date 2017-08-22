@@ -93,7 +93,7 @@ h1 {
 
 table {
     border-collapse:separate;
-    border:solid #ccc 1px;
+    border: solid 0.1rem #33d87a;
     border-radius:10px;
     -moz-border-radius:10px;
     font-family: 'Nunito', sans-serif;
