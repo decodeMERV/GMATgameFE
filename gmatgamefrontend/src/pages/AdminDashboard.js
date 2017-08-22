@@ -140,7 +140,10 @@ export default class AdminDashboard extends Component {
             return <option value={index + 1} key={category}>{category}</option>
           })}
         </select>
-        <button className="create-button" onClick={this.processCreateQuestion}>Create</button>
+
+        <div className="button-wrapper">
+          <button className="create-button" onClick={this.processCreateQuestion}>Create</button>
+        </div>
 
         <h1>Show Questions</h1>
         <select ref="levelShowQuestions" onChange={this.showDiffQuestions}>
@@ -160,17 +163,20 @@ export default class AdminDashboard extends Component {
             return <option value={numberOfRows} key={numberOfRows}>{numberOfRows + " Per Page"}</option>
           })}
         </select>
-        <button onClick={this.prevPage}>{"<"}</button>
-        <button onClick={this.nextPage}>{">"}</button>
+
+        <div className="display-arrows">
+          <button className="arrow-button" onClick={this.prevPage}>{"<"}</button>
+          <button className="arrow-button" onClick={this.nextPage}>{">"}</button>
+        </div>
         {
           Array.isArray(this.state.arrayQues) && this.state.arrayQues.length > 0 ?
-            <table>
+            <table className="xxx">
               <tbody>
                 <tr>
                   <th>ID</th>
                   <th>Title</th>
-                  <th>Category</th>
-                  <th>Level</th>
+                  <th>Cat</th>
+                  <th>Lvl</th>
                   <th></th>
                 </tr>
                 {this.state.arrayQues.map((question, i) => {
