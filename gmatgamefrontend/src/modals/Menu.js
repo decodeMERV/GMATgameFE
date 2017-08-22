@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
-import onClickOutside from 'react-onclickoutside';
 import auth from '../auth';
 // import api from '../../api';
 import './Menu.css';
@@ -14,10 +13,6 @@ class Menu extends Component {
     this.state = {
       isUserLoggedIn : false
     };
-  }
-
-  handleClickOutside = () => {
-    this.props.closeMenu();
   }
 
   componentDidMount(){
@@ -45,52 +40,55 @@ class Menu extends Component {
   changeLoggedIn = () => { this.setState({isUserLoggedIn : !this.state.isUserLoggedIn}) }
 
   render() {
-    let { closeMenu, show } = this.props
+    let { show } = this.props
     const isLoggedIn = auth.isLoggedIn()
     return (
-      <div className={`menu ${show?"show":""}`}>
-
+      <div className={`menu ${show?"show":""}`} onClick={console.log}>
+        {/*<div className="menu__header">*/}
+          {/*<i className="fa fa-bars fa-2x menu-icon"*/}
+             {/*onClick={closeMenu}/>*/}
+        {/*</div>*/}
 
         <div className="menu__list">
 
           {isLoggedIn ?
-          <Link to="/" className="menu__item" onClick={closeMenu}>
+          <Link to="/" className="menu__item" onClick={this.props.onNavigate}>
             Home
           </Link>
             : null}
 
           {!isLoggedIn ?
-            <Link to="/" className="menu__item" onClick={closeMenu}>
+            <Link to="/" className="menu__item" onClick={this.props.onNavigate}>
               Login
             </Link>
             : null}
 
           {!isLoggedIn ?
-            <Link to="/signup" className="menu__item" onClick={closeMenu}>
+            <Link to="/signup" className="menu__item" onClick={this.props.onNavigate}>
               Signup
             </Link>
             : null}
 
           {isLoggedIn ?
-            <Link to="/dashboard" className="menu__item" onClick={closeMenu}>
-              Dashboard
+            <Link to="/dashboard" className="menu__item" onClick={this.props.onNavigate}>
+              Profile
             </Link>
             : null}
 
           {isLoggedIn ?
-            <Link to="/leaders" className="menu__item" onClick={closeMenu}>
-             Leaderboard
+            <Link to="/leaders" className="menu__item" onClick={this.props.onNavigate}>
+             Stats
             </Link>
             : null}
 
           {isLoggedIn ?
-            <Link to="/play" className="menu__item" onClick={closeMenu}>
+            <Link to="/play" className="menu__item" onClick={this.props.onNavigate}>
               Play
             </Link>
             : null}
 
           {isLoggedIn ?
-            <Link to="/" className="menu__item" onClick={closeMenu}>
+            <Link to="/" className="menu__item" onClick={this.props.onNavigate}>
               Logout
             </Link>
             : null}
@@ -105,4 +103,4 @@ class Menu extends Component {
 
 }
 
-export default onClickOutside(Menu);
+export default Menu;
