@@ -67,7 +67,7 @@
 }
 
 .menu__item {
-
+    margin-top: 0.5rem ;
     padding:25px 0;
     color:white;
     text-decoration: none;
