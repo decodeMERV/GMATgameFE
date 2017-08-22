@@ -5,8 +5,6 @@ import Menu from './modals/Menu';
 import auth from './auth.js';
 import onClickOutside from 'react-onclickoutside';
 
-/*import DescriptiveTextBox from './elements/DescriptiveTextBox';*/
-
 const Burger = onClickOutside(class extends Component {
   handleClickOutside() {
     this.props.onClickOutside();
@@ -65,33 +63,18 @@ class App extends Component {
 
         <div className="App-navbar">
 
-
-          {/*<div className="App-menubar">*/}
           <Burger
             onClick={()=>this.setState({ isMenuOpen: !isMenuOpen })}
             onClickOutside={() => this.setState({isMenuOpen: false})}
             outsideClickIgnoreClass="menu__item"
           />
-
-          {/*<Link to="/" className="App-navbar__title">Dashboardly</Link>*/}
-
-          {/*</div>*/}
-
           <Menu show={isMenuOpen} onNavigate={() => this.setState({isMenuOpen: false})} />
 
-
-
-
-          {/* LOGO starts Below*/}
-
-
-
           <Link to="/" className="App-navbar__title">
-          <div className="gmatimage">
-            <img src={require("./gmat_logo.svg")} width="160px" alt='noimage'/>
 
-          </div>
-
+            <div className="gmatimage">
+              <img src={require("./gmax_logo_v2.svg")} width="160px" height="100px"/>
+            </div>
           </Link>
 
           {
@@ -100,33 +83,19 @@ class App extends Component {
                   <Link to="/dashboard">
                     <img src={this.state.avatarUrl} alt="gravatarIcon" style={{borderRadius:"50%", maxWidth:"3rem", backgroundColor:"#2b2b2b"}}/>
                   </Link>
-                  <div>
-                        {/*<p className="p-nav"*/}
-                          {/*onClick={() => {*/}
-                              {/*auth.logout()*/}
-                              {/*.then( () => {*/}
-                                {/*this.setState({avatarUrl: "", username:undefined});*/}
-                                {/*this.props.router.push('/');*/}
-                              {/*})*/}
-                            {/*}}*/}
-                            {/*>*/}
-                            {/*logout</p>*/}
-                      </div>
-                    {/*<p>{this.state.username}</p>*/}
-
                 </div>
             :
             null
         }
-
         </div>
 
         <div className="background-overlay">
-        {React.cloneElement(this.props.children, {loggedInProp :this.props.loggedIn, username : this.state.username } )}
+          {React.cloneElement(this.props.children, {loggedInProp :this.props.loggedIn, username : this.state.username } )}
       </div>
       </div>
     );
   }
 }
 
-export default App;
+
+   export default App;

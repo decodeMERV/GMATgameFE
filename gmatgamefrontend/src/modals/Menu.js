@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router';
+import { Link, withRouter } from 'react-router';
+import onClickOutside from 'react-onclickoutside';
 import auth from '../auth';
-// import api from '../../api';
+import api from '../api';
 import './Menu.css';
-// import Logout from "../Logout";
-
 
 class Menu extends Component {
 
@@ -16,7 +15,6 @@ class Menu extends Component {
   }
 
   componentDidMount(){
-    // this.fetchProfilePic()
   }
 
   componentDidUpdate(prevProps, prevState){
@@ -25,29 +23,24 @@ class Menu extends Component {
     }
   }
 
-  // fetchProfilePic = () => {
-  //   return auth.getCurrentLoggedInUser(auth.getToken())
-  //     .then(res => {
-  //       this.setState({
-  //         url : res.body.avatarUrl
-  //       });
-  //     })
-  //     .catch(error => {
-  //       console.log("error, user not logged in to get pic " + error);
-  //     })
-  // }
+
+  _handleLogout = () =>{
+    console.log("KEK")
+    auth.logout()
+    .then((res => this.props.router.push('/')))
+    .catch( error => alert("Could not log you out, " + error) )
+}
 
   changeLoggedIn = () => { this.setState({isUserLoggedIn : !this.state.isUserLoggedIn}) }
+
+  handleClickOutside = () => {}
 
   render() {
     let { show } = this.props
     const isLoggedIn = auth.isLoggedIn()
     return (
+
       <div className={`menu ${show?"show":""}`} onClick={console.log}>
-        {/*<div className="menu__header">*/}
-          {/*<i className="fa fa-bars fa-2x menu-icon"*/}
-             {/*onClick={closeMenu}/>*/}
-        {/*</div>*/}
 
         <div className="menu__list">
 
@@ -88,12 +81,11 @@ class Menu extends Component {
             : null}
 
           {isLoggedIn ?
-            <Link to="/" className="menu__item" onClick={this.props.onNavigate}>
+
+            <p className="menu__item" onClick={this._handleLogout}>
               Logout
-            </Link>
+            </p>
             : null}
-
-
 
         </div>
 
@@ -103,4 +95,7 @@ class Menu extends Component {
 
 }
 
-export default Menu;
+
+export default withRouter(onClickOutside(Menu));
+// export default withRouter(Menu);
+//export default Menu;

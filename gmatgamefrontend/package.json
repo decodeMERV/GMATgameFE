@@ -5,6 +5,7 @@
   "dependencies": {
     "compass": "^0.1.1",
     "compass-mixins": "^0.12.10",
+    "howler": "^2.0.4",
     "moment": "^2.18.1",
     "npm-css": "^0.2.3",
     "react": "^15.6.1",
