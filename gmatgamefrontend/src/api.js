@@ -27,11 +27,12 @@ class Api {
       .send({ email, password, username, interests })
   )
 
-  requestQuestion = (currentLevel, isCorrect) => {
+  requestQuestion = (currentLevel, isCorrect, token) => {
     if (currentLevel !== undefined && isCorrect !== undefined) {
       return superagent
         .get(`${API_HOST}/questions/nextQuestion?currentLevel=${currentLevel}&isCorrect=${isCorrect}`)
         .set('Content-Type', 'application/json')
+        .set('Authorization', `token ${token}`)
     }
     else {
       return superagent
@@ -46,11 +47,12 @@ class Api {
       .set('Authorization', `token ${token}`)
   }
 
-  recordQuestion = (username,questionId,isCorrect,category,answer,level,score,time) => (
+  recordQuestion = (username,questionId,isCorrect,category,answer,level,score,time,token) => (
 
     superagent
       .post(`${API_HOST}/record/recorder`)
       .set('Content-Type', 'application/json')
+      .set('Authorization', `token ${token}`)
       .send({ username, questionId, isCorrect, category, answer, level, score, time})
 
   )

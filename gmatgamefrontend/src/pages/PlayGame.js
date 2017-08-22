@@ -5,6 +5,7 @@ import Question from '../elements/Question';
 import Answer from '../elements/Answer';
 import api from '../api';
 import Timer from '../elements/Timer';
+import auth from '../auth';
 
 
 export default class PlayGame extends Component {
@@ -18,7 +19,7 @@ export default class PlayGame extends Component {
   };
 
   fetchQAndA = (currentLevel, isCorrect) => {
-    api.requestQuestion(currentLevel, isCorrect)
+    api.requestQuestion(currentLevel, isCorrect, auth.getToken())
       .then( res => {
         this.setState({
           ID: res.body.id,
@@ -45,7 +46,7 @@ export default class PlayGame extends Component {
   }
 
   componentDidMount(){
-    this.fetchQAndA(); //By default if we don't send the level param and the correct boolean and will start at the initial question
+    this.fetchQAndA(200, false, auth.getToken()); //By default if we don't send the level param and the correct boolean and will start at the initial question
     this.timer = setInterval(() => {
       if (this.state.isPlayerCorrect === undefined) {
         this.setState({
@@ -96,7 +97,7 @@ export default class PlayGame extends Component {
     console.log("TIME ", time)
 
     //api.recordQuestion(this.props.username, this.state.ID, rw, this.state.cat, answer, this.state.level, pts)
-      api.recordQuestion(username,questionId,isCorrect,category,answer,level,score,time)
+      api.recordQuestion(username,questionId,isCorrect,category,answer,level,score,time, auth.getToken())
       .then(res => {console.log("res",res)})
       .catch(() => this.setState({theError: "Wrong database command"}))
     console.log("all this chit: ", this.props.username, this.state.ID, this.state.cat, answer, this.state.level,this.state.timeElapsed)
