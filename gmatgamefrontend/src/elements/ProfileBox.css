@@ -37,8 +37,11 @@ h2 {
   text-align: center;
 }
 input[type=text]:focus{
-    background-color: yellow;
+    background-color: #fff494;
+}
 
+input[type=password]:focus{
+    background-color: #fff494;
 }
 .cancel-button{
   background-color: #ff3333;
