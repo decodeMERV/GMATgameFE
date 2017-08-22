@@ -4,6 +4,7 @@ import DescriptiveTextBox from '../elements/DescriptiveTextBox';
 import DeleteButton from '../elements/DeleteButton';
 import api from '../api';
 import auth from '../auth';
+import Dropdown from "../elements/Dropdown";
 
 const ENTER = 13;
 const GMATLevels = ['200', '300', '400'];
@@ -19,10 +20,12 @@ export default class AdminDashboard extends Component {
       successMSG: null,
       rowOffset: 0
     }
+    this.createQuesEle = {}
+    this.showRowsEle = {}
   }
 
   handleUserInput = (e) => {
-    if (this.state && this.state.error) {
+    if (this.state && this.state.error) { //clear error message on the page
       this.setState({ error: null })
     }
     if (this.state && this.state.successMSG) {
@@ -37,16 +40,28 @@ export default class AdminDashboard extends Component {
     var questionObj = {};
 
     for (var ref in this.refs){
-      questionObj[ref] = (this.refs[ref].value); //minor inefficiency here as we are attaching a few too many refs
+      if ( ref.match(/^answer[ABCDE]|title/) ){
+        questionObj[ref] = (this.refs[ref].value);
+      }
+
       if (!this.refs[ref].value) { //Check if form is empty
-        this.setState({error: "Fill in the form!"})
+        this.setState({error: "Fill in the form!"});
         return;
       }
     }
 
+    for (var dropdown in this.createQuesEle){
+      questionObj[dropdown] = (this.createQuesEle[dropdown].value);
+    }
+
     api.createQuestion(questionObj, auth.getToken())
       .then( (res) => {
-        this.setState({successMSG: res.body.message})
+        this.setState({successMSG: res.body.message});
+        for (var ref in this.refs){ //To clear the input fields
+          if ( ref.match(/^answer[ABCDE]|title/) ){
+            (this.refs[ref].value) = "";
+          }
+        }
       })
       .catch( (error) => {
         this.setState({error: "Error posting to questions table" + error})
@@ -63,7 +78,7 @@ export default class AdminDashboard extends Component {
     api.getArrayOfQuestions(arrayQuesObj, auth.getToken())
       .then(res => {
         if (res.body.length > 0) { //in case we don't get an array of rows back, moreover in case the user selects on the placeholder option
-          this.setState({arrayQues: res.body, rowOffset: this.state.rowOffset + Number(this.refs.limitQuestions.value) });
+          this.setState({arrayQues: res.body, rowOffset: this.state.rowOffset + Number(this.showRowsEle.limitQuestions.value) });
         }
       })
   }
@@ -71,25 +86,25 @@ export default class AdminDashboard extends Component {
   showDiffQuestions = () => {
     this.setState({ rowOffset : 0}, //To reset the previous search we start at offset 0
       () => {
-        this.fetchLeQuestions(this.state.rowOffset, this.refs.limitQuestions.value,
-          (this.refs.categoryIdShowQuestions.value === "Category" ? undefined : this.refs.categoryIdShowQuestions.value ),
-          (this.refs.levelShowQuestions.value === "Level" ? undefined : this.refs.levelShowQuestions.value))
+        this.fetchLeQuestions(this.state.rowOffset, this.showRowsEle.limitQuestions.value,
+          (this.showRowsEle.categoryIdShowQuestions.value === "Category" ? undefined : this.showRowsEle.categoryIdShowQuestions.value ),
+          (this.showRowsEle.levelShowQuestions.value === "Level" ? undefined : this.showRowsEle.levelShowQuestions.value))
       });
   }
 
   nextPage = () => {
-        this.fetchLeQuestions(this.state.rowOffset, this.refs.limitQuestions.value,
-          (this.refs.categoryIdShowQuestions.value === "Category" ? undefined : this.refs.categoryIdShowQuestions.value ),
-          (this.refs.levelShowQuestions.value === "Level" ? undefined : this.refs.levelShowQuestions.value)) //Don't need to add to this.state.rowOffset in this function, as it gets added during the fetchLeQuestions
+        this.fetchLeQuestions(this.state.rowOffset, this.showRowsEle.limitQuestions.value,
+          (this.showRowsEle.categoryIdShowQuestions.value === "Category" ? undefined : this.showRowsEle.categoryIdShowQuestions.value ),
+          (this.showRowsEle.levelShowQuestions.value === "Level" ? undefined : this.showRowsEle.levelShowQuestions.value)) //Don't need to add to this.state.rowOffset in this function, as it gets added during the fetchLeQuestions
   }
 
-  prevPage = () => { //TODO: Ask why I need t o wrap the callback in () = > {}
-    if (this.state.rowOffset - Number(this.refs.limitQuestions.value) < 1) { return }
-    this.setState({ rowOffset : this.state.rowOffset - Number(this.refs.limitQuestions.value)*2 }, //We need multiply it by two as the offset goes up in fetchLeQuestions
+  prevPage = () => {
+    if (this.state.rowOffset - Number(this.showRowsEle.limitQuestions.value) < 1) { return }
+    this.setState({ rowOffset : this.state.rowOffset - Number(this.showRowsEle.limitQuestions.value)*2 }, //We need multiply it by two as the offset goes up in fetchLeQuestions
       () => {
-        this.fetchLeQuestions(this.state.rowOffset, this.refs.limitQuestions.value,
-          (this.refs.categoryIdShowQuestions.value === "Category" ? undefined : this.refs.categoryIdShowQuestions.value ),
-          (this.refs.levelShowQuestions.value === "Level" ? undefined : this.refs.levelShowQuestions.value))
+        this.fetchLeQuestions(this.state.rowOffset, this.showRowsEle.limitQuestions.value,
+          (this.showRowsEle.categoryIdShowQuestions.value === "Category" ? undefined : this.showRowsEle.categoryIdShowQuestions.value ),
+          (this.showRowsEle.levelShowQuestions.value === "Level" ? undefined : this.showRowsEle.levelShowQuestions.value))
       });
   }
 
@@ -97,13 +112,11 @@ export default class AdminDashboard extends Component {
     this.fetchLeQuestions();
   }
 
-  deleteQuestion = (questionId, arrayIndex) => {
-    return (() => {
+  deleteQuestion = (questionId, arrayIndex) => () => {
       api.deleteThisQuestion(questionId, auth.getToken())
         .then( () => { //Note here how I chose not to refetch the data to lessen server load, instead make it disappear on front-end - Vincent Lau
           this.setState({ arrayQues : this.state.arrayQues.slice(0, arrayIndex).concat( this.state.arrayQues.slice(arrayIndex + 1) ) }) // Slice out the deleted item
         })
-    })
   }
 
   render () {
@@ -118,56 +131,38 @@ export default class AdminDashboard extends Component {
           :
           null}
 
-          <h1>Insert Question & Answer Choices</h1>
+        <h1>Insert Question & Answer Choices</h1>
         <input ref="title" type="text" onKeyUp={this.handleUserInput} placeholder={"Question"}/>
         {MultipleChoiceOptions.map( (letter) => {
           return <input type="text" onKeyUp={this.handleUserInput} placeholder={"Answer" + letter} ref={"answer"+letter} key={letter}/>
         })}
 
-          <h1>Insert Correct Answer, Category, Levels</h1>
-        <select ref="correctAnswer" onChange={this.handleUserInput}>
-          {MultipleChoiceOptions.map( (letter) => {
-            return <option value={letter} key={letter}>{"Answer " + letter}</option>
-          })}
-        </select>
-        <select ref="level" onChange={this.handleUserInput}>
-          {GMATLevels.map( (level) => {
-            return <option value={level} key={level}>{"level " + level}</option>
-          })}
-        </select>
-        <select ref="categoryId" onChange={this.handleUserInput}>
-          {GMATCategories.map( (category, index) => {
-            return <option value={index + 1} key={category}>{category}</option>
-          })}
-        </select>
-
-        <div className="button-wrapper">
-          <button className="create-button" onClick={this.processCreateQuestion}>Create</button>
-        </div>
+        <h1>Insert Correct Answer, Category, Levels</h1>
+          <Dropdown innerRef={ (ele) => {this.createQuesEle.correctAnswer = ele} } onChange={this.handleUserInput} passedArray={MultipleChoiceOptions} useItemValueOrIndex={true} textBefore={"Answer "} showItem={true} textAfter={false}/>
+          <Dropdown innerRef={ (ele) => {this.createQuesEle.level = ele} } onChange={this.handleUserInput} passedArray={GMATLevels} useItemValueOrIndex={true} textBefore={"Level "} showItem={true} textAfter={false}/>
+          <Dropdown innerRef={ (ele) => {this.createQuesEle.categoryId = ele} } onChange={this.handleUserInput} passedArray={GMATCategories} useItemValueOrIndex={false} textBefore={false} showItem={true} textAfter={false}/>
+          <div className="button-wrapper">
+            <button className="create-button" onClick={this.processCreateQuestion}>Create</button>
+          </div>
 
         <h1>Show Questions</h1>
-        <select ref="levelShowQuestions" onChange={this.showDiffQuestions}>
+
+          <Dropdown innerRef={ (ele) => {this.showRowsEle.levelShowQuestions = ele} } onChange={this.showDiffQuestions} passedArray={GMATLevels} useItemValueOrIndex={true} textBefore={"Level "} showItem={true} textAfter={false}>
           <option>Level</option>
-          {GMATLevels.map((level) => {
-            return <option value={level} key={level}>{"level " + level}</option>
-          })}
-        </select>
-        <select ref="categoryIdShowQuestions" onChange={this.showDiffQuestions}>
+          </Dropdown>
+
+          <Dropdown innerRef={ (ele) => {this.showRowsEle.categoryIdShowQuestions = ele} } onChange={this.showDiffQuestions} passedArray={GMATCategories} useItemValueOrIndex={false} textBefore={false} showItem={true} textAfter={false}>
           <option>Category</option>
-          {GMATCategories.map((category, index) => {
-            return <option value={index + 1} key={category}>{category}</option>
-          })}
-        </select>
-        <select ref="limitQuestions" onChange={this.showDiffQuestions}>
-          {GMATQuestionLimit.map((numberOfRows) => {
-            return <option value={numberOfRows} key={numberOfRows}>{numberOfRows + " Per Page"}</option>
-          })}
-        </select>
+          </Dropdown>
+
+          <Dropdown innerRef={ (ele) => {this.showRowsEle.limitQuestions = ele} } onChange={this.showDiffQuestions} passedArray={GMATQuestionLimit} useItemValueOrIndex={true} textBefore={false} showItem={true} textAfter={" Per Page"}/>
 
         <div className="display-arrows">
           <button className="arrow-button" onClick={this.prevPage}>{"<"}</button>
           <button className="arrow-button" onClick={this.nextPage}>{">"}</button>
         </div>
+        
+
         {
           Array.isArray(this.state.arrayQues) && this.state.arrayQues.length > 0 ?
             <table className="xxx">
@@ -188,7 +183,7 @@ export default class AdminDashboard extends Component {
                       <td>{question.categoryName} </td>
                       <td>{question.level} </td>
                       <td> <DeleteButton onClick={this.deleteQuestion(question.id, i)}/> </td>
-                    </tr>) //TODO: Ask ziad about onClick assigment
+                    </tr>)
                 })}
               </tbody>
             </table>

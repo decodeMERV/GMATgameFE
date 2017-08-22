@@ -50,13 +50,11 @@ class App extends Component {
       <div className="App">
 
         <div className="App-navbar">
-
             <i className="fa fa-bars fa-2x menu-icon"
                onClick={()=>this.setState({ isMenuOpen: !isMenuOpen })}/>
-
           <Menu show={isMenuOpen} closeMenu={this.closeMenu}/>
-
           <Link to="/" className="App-navbar__title">
+
             <div className="gmatimage">
               <img src={require("./gmax_logo_v2.svg")} width="160px" height="100px"/>
             </div>
@@ -68,19 +66,6 @@ class App extends Component {
                   <Link to="/dashboard">
                     <img src={this.state.avatarUrl} alt="gravatarIcon" style={{borderRadius:"50%", maxWidth:"3rem", backgroundColor:"#2b2b2b"}}/>
                   </Link>
-                  <div>
-                        {/*<p className="p-nav"*/}
-                          {/*onClick={() => {*/}
-                              {/*auth.logout()*/}
-                              {/*.then( () => {*/}
-                                {/*this.setState({avatarUrl: "", username:undefined});*/}
-                                {/*this.props.router.push('/');*/}
-                              {/*})*/}
-                            {/*}}*/}
-                            {/*>*/}
-                            {/*logout</p>*/}
-                      </div>
-                    {/*<p>{this.state.username}</p>*/}
                 </div>
             :
             null

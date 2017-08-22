@@ -81,7 +81,7 @@ export default class UserProfile extends Component {
       <div className="profile-container">
         <ProfileBox name={this.state.username} contact={this.state.email} aboutMe={this.state.interests}
         openingEdit={this.openingEdit} editOpen={this.state.editOpen} onChange={this.onChangedValue}
-        closingEdit={this.closingEdit} closeEdit={this.state.closeEdit}/>
+         closingEdit={this.closingEdit} closeEdit={this.state.closeEdit}/>
       </div>
     );
   }
