@@ -15,7 +15,7 @@ const GMATQuestionLimit = ['10', '25', '50'];
 export default class AdminDashboard extends Component {
   constructor(){
     super();
-    this.state={
+    this.state = {
       error : null,
       successMSG: null,
       rowOffset: 0
@@ -121,7 +121,7 @@ export default class AdminDashboard extends Component {
 
   render () {
     return (
-      <div>
+      <div className="admin-container">
         {(this.state.successMSG !== null) ?
           <DescriptiveTextBox theText={this.state.successMSG} bgColor="green"/>
           :
@@ -130,35 +130,48 @@ export default class AdminDashboard extends Component {
           <DescriptiveTextBox theText={this.state.error} bgColor="red"/>
           :
           null}
+
+        <h1>Insert Question & Answer Choices</h1>
         <input ref="title" type="text" onKeyUp={this.handleUserInput} placeholder={"Question"}/>
         {MultipleChoiceOptions.map( (letter) => {
           return <input type="text" onKeyUp={this.handleUserInput} placeholder={"Answer" + letter} ref={"answer"+letter} key={letter}/>
         })}
-        <Dropdown innerRef={ (ele) => {this.createQuesEle.correctAnswer = ele} } onChange={this.handleUserInput} passedArray={MultipleChoiceOptions} useItemValueOrIndex={true} textBefore={"Answer "} showItem={true} textAfter={false}/>
-        <Dropdown innerRef={ (ele) => {this.createQuesEle.level = ele} } onChange={this.handleUserInput} passedArray={GMATLevels} useItemValueOrIndex={true} textBefore={"Level "} showItem={true} textAfter={false}/>
-        <Dropdown innerRef={ (ele) => {this.createQuesEle.categoryId = ele} } onChange={this.handleUserInput} passedArray={GMATCategories} useItemValueOrIndex={false} textBefore={false} showItem={true} textAfter={false}/>
-        <DescriptiveTextBox theText="Create" onClick={this.processCreateQuestion}/>
 
-        <h2>Questions</h2>
+        <h1>Insert Correct Answer, Category, Levels</h1>
+          <Dropdown innerRef={ (ele) => {this.createQuesEle.correctAnswer = ele} } onChange={this.handleUserInput} passedArray={MultipleChoiceOptions} useItemValueOrIndex={true} textBefore={"Answer "} showItem={true} textAfter={false}/>
+          <Dropdown innerRef={ (ele) => {this.createQuesEle.level = ele} } onChange={this.handleUserInput} passedArray={GMATLevels} useItemValueOrIndex={true} textBefore={"Level "} showItem={true} textAfter={false}/>
+          <Dropdown innerRef={ (ele) => {this.createQuesEle.categoryId = ele} } onChange={this.handleUserInput} passedArray={GMATCategories} useItemValueOrIndex={false} textBefore={false} showItem={true} textAfter={false}/>
+          <div className="button-wrapper">
+            <button className="create-button" onClick={this.processCreateQuestion}>Create</button>
+          </div>
 
-        <Dropdown innerRef={ (ele) => {this.showRowsEle.levelShowQuestions = ele} } onChange={this.showDiffQuestions} passedArray={GMATLevels} useItemValueOrIndex={true} textBefore={"Level "} showItem={true} textAfter={false}>
+        <h1>Show Questions</h1>
+
+          <Dropdown innerRef={ (ele) => {this.showRowsEle.levelShowQuestions = ele} } onChange={this.showDiffQuestions} passedArray={GMATLevels} useItemValueOrIndex={true} textBefore={"Level "} showItem={true} textAfter={false}>
           <option>Level</option>
-        </Dropdown>
-        <Dropdown innerRef={ (ele) => {this.showRowsEle.categoryIdShowQuestions = ele} } onChange={this.showDiffQuestions} passedArray={GMATCategories} useItemValueOrIndex={false} textBefore={false} showItem={true} textAfter={false}>
+          </Dropdown>
+
+          <Dropdown innerRef={ (ele) => {this.showRowsEle.categoryIdShowQuestions = ele} } onChange={this.showDiffQuestions} passedArray={GMATCategories} useItemValueOrIndex={false} textBefore={false} showItem={true} textAfter={false}>
           <option>Category</option>
-        </Dropdown>
-        <Dropdown innerRef={ (ele) => {this.showRowsEle.limitQuestions = ele} } onChange={this.showDiffQuestions} passedArray={GMATQuestionLimit} useItemValueOrIndex={true} textBefore={false} showItem={true} textAfter={" Per Page"}/>
-        <button onClick={this.prevPage}>{"<"}</button>
-        <button onClick={this.nextPage}>{">"}</button>
+          </Dropdown>
+
+          <Dropdown innerRef={ (ele) => {this.showRowsEle.limitQuestions = ele} } onChange={this.showDiffQuestions} passedArray={GMATQuestionLimit} useItemValueOrIndex={true} textBefore={false} showItem={true} textAfter={" Per Page"}/>
+
+        <div className="display-arrows">
+          <button className="arrow-button" onClick={this.prevPage}>{"<"}</button>
+          <button className="arrow-button" onClick={this.nextPage}>{">"}</button>
+        </div>
+        
+
         {
           Array.isArray(this.state.arrayQues) && this.state.arrayQues.length > 0 ?
-            <table>
+            <table className="xxx">
               <tbody>
                 <tr>
                   <th>ID</th>
                   <th>Title</th>
-                  <th>Category</th>
-                  <th>Level</th>
+                  <th>Cat</th>
+                  <th>Lvl</th>
                   <th></th>
                 </tr>
                 {this.state.arrayQues.map((question, i) => {
