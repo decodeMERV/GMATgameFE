@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css?family=Nunito');
-
 body *, body *:before, body *:after { box-sizing: inherit; }
 
 html, span, applet, object, iframe,
@@ -17,17 +15,19 @@ table, caption, tbody, tfoot, thead, tr, th, td, header {
   font-weight: inherit;
   font-style: inherit;
   font-size: 100%;
-  font-family: Nunito, helvetica;
+  font-family: inherit;
   vertical-align: baseline;
   line-height: normal;
+  /*min-width: 70%;*/
   text-decoration: none;
 }
-
+/* remember to define focus styles! */
 :focus {
   outline: 0;
 }
 
 body {
+  font-family: helvetica;
   line-height: 1;
   color: #3e3a3a;
   background: #eeeef2;
@@ -40,23 +40,22 @@ body {
 }
 
 /*.background-overlay {*/
-  /*height: 100vh;*/
-  /*width: 100vw;*/
-    /*background-color: #f2f2f2;*/
+/*height: 100vh;*/
+/*width: 100vw;*/
+/*background-color: #f2f2f2;*/
 
-    /*display: -ms-flexbox;*/
-  /*display: flex;*/
-  /*-ms-flex-flow: column;*/
-  /*flex-flow: column;*/
-  /*-ms-flex-pack: center;*/
-  /*-ms-flex-align: center;*/
+/*display: -ms-flexbox;*/
+/*display: flex;*/
+/*-ms-flex-flow: column;*/
+/*flex-flow: column;*/
+/*-ms-flex-pack: center;*/
+/*-ms-flex-align: center;*/
 
-  /*background: rgba(43, 43, 43, 0.84);*/
+/*background: rgba(43, 43, 43, 0.84);*/
 
 /*}*/
 
 /*.Logo {
-
 }*/
 
 
@@ -93,13 +92,13 @@ blockquote, q {
   align-items: center;
   background: rgb(43, 43, 43);
   padding: 1em;
-  min-width: 50%;
 }
 
 /*img {*/
-    /*display: block;*/
-    /*margin: 0 auto;*/
+/*display: block;*/
+/*margin: 0 auto;*/
 /*}*/
+
 
 
 .play-button{
@@ -112,10 +111,10 @@ blockquote, q {
 }
 
 /*.App-navbar__title {*/
-  /*margin: 0;*/
-  /*color: rgba(255,255,255,0.9);*/
-  /*font-size: 1.5rem;*/
-  /*text-decoration: none;*/
+/*margin: 0;*/
+/*color: rgba(255,255,255,0.9);*/
+/*font-size: 1.5rem;*/
+/*text-decoration: none;*/
 /*}*/
 
 .login {
@@ -127,9 +126,10 @@ blockquote, q {
   padding: 2rem;
   margin: 20% 0 20% 20%;
   max-width: 50%;
-   min-width: 50%;
+  min-width: 50%;
   /* background-color: white; */
 }
+
 
 .nav-dashboard {
 

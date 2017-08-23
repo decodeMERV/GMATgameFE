@@ -11,7 +11,7 @@
 }
 
 h2 {
-  font-size: 1.6rem;
+  font-size: 1.8rem;
   font-weight: bold;
   margin-bottom: 0.25em;
 }
@@ -25,11 +25,13 @@ h4{
 }
 
 .profilebox {
-  overflow-wrap: break-word;
+    font-family: 'Nunito', sans-serif;
+
+    overflow-wrap: break-word;
   padding: 1rem 5rem 1rem 5rem;
   border: solid 0.1rem #33d87a;
-  min-width: 50vw;
-  max-width: 60vw;
+  min-width: 35vw;
+  max-width: 45vw;
   border-radius: 25px;
   display: flex;
   flex-direction: column;

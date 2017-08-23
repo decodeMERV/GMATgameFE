@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router';
 import onClickOutside from 'react-onclickoutside';
 import auth from '../auth';
-import api from '../api';
 import './Menu.css';
 
 class Menu extends Component {
@@ -10,7 +9,7 @@ class Menu extends Component {
   constructor(props){
     super(props);
     this.state = {
-      isUserLoggedIn : false
+      isUserLoggedIn : false,
     };
   }
 
@@ -21,8 +20,8 @@ class Menu extends Component {
     if (this.state.isUserLoggedIn !== prevState.isUserLoggedIn) {
       this.setState({ url: ""})
     }
-  }
 
+  }
 
   _handleLogout = () =>{
     console.log("KEK")
@@ -36,19 +35,16 @@ class Menu extends Component {
   handleClickOutside = () => {}
 
   render() {
+
     let { show } = this.props
     const isLoggedIn = auth.isLoggedIn()
+
+
     return (
 
       <div className={`menu ${show?"show":""}`} onClick={console.log}>
 
         <div className="menu__list">
-
-          {isLoggedIn ?
-          <Link to="/" className="menu__item" onClick={this.props.onNavigate}>
-            Home
-          </Link>
-            : null}
 
           {!isLoggedIn ?
             <Link to="/" className="menu__item" onClick={this.props.onNavigate}>
@@ -87,6 +83,7 @@ class Menu extends Component {
             </p>
             : null}
 
+
         </div>
 
       </div>
@@ -97,5 +94,4 @@ class Menu extends Component {
 
 
 export default withRouter(onClickOutside(Menu));
-// export default withRouter(Menu);
-//export default Menu;
+

@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import { Link, withRouter } from 'react-router';
 import './UserProfile.css';
 import ProfileBox from '../elements/ProfileBox';
 import auth from '../auth.js';
@@ -26,7 +27,8 @@ export default class UserProfile extends Component {
           username : res.body.username,
           avatarUrl : res.body.avatarUrl,
           interests : res.body.interests,
-          email: res.body.email
+          email: res.body.email,
+          admin: res.body.admin
         })
       })
   }
@@ -77,11 +79,13 @@ export default class UserProfile extends Component {
 
 //We can get rid of CDU and check if user is logged in with ternary render or not
    render(){
+
     return (
       <div className="profile-container">
         <ProfileBox name={this.state.username} contact={this.state.email} aboutMe={this.state.interests}
         openingEdit={this.openingEdit} editOpen={this.state.editOpen} onChange={this.onChangedValue}
          closingEdit={this.closingEdit} closeEdit={this.state.closeEdit}/>
+        {this.state.admin ?  <Link to="/patron" className="menu__item" onClick={this.props.onNavigate}> Admin </Link> : null}
       </div>
     );
   }

@@ -80,7 +80,7 @@ input[type=text], select {
   cursor: pointer;
 }
 
-table {
+.xxx {
   border-collapse: separate;
   border: solid #ccc 1px;
   border-radius: 10px;
@@ -89,16 +89,17 @@ table {
   margin-top: 1rem;
   background-color: white;
   width: 100%;
+
   }
 
 table.xxx tr > :first-child {
   display: none;
 }
 
-caption, th, td {
+/*caption, th, td {*/
   text-align: left;
   font-weight: normal;
   font-size: 12px;
   text-align: center;
   padding: 1rem;
-}
+/*}*/

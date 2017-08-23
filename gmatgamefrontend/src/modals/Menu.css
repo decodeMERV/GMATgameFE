@@ -22,7 +22,7 @@
 }
 
 .fa-bars:hover {
-  color: #6acbf7;
+  color: #33d87a;
 }
 
 /*.menu {
@@ -72,6 +72,7 @@
 }
 
 .menu__item {
+    font-family: 'Nunito', sans-serif;
 
     margin-top: 0.5rem ;
     padding:25px 0;
@@ -83,13 +84,12 @@
 
 
 .menu__item:hover {
-  color: #4caf50;
+  color: #33d87a;
   text-decoration: none;
   line-height: 2rem;
   padding:25px 0;
 }
 
->>>>>>> origin/master
 
 .menu__item_logout {
   color:white;
