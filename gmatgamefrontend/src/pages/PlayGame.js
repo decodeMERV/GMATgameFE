@@ -14,7 +14,8 @@ export default class PlayGame extends Component {
     this.state = {
       score : 0,
       Q     : "LOADING Question...",
-      startTime: Date.now()
+      startTime: Date.now(),
+      loading : true,
     }
   };
 
@@ -35,7 +36,8 @@ export default class PlayGame extends Component {
           level : res.body.level,
           isPlayerCorrect : undefined,
           startTime: Date.now(),
-          timeElapsed: 0
+          timeElapsed: 0,
+          loading: false
         })
       })
       .catch( error => {
@@ -46,7 +48,8 @@ export default class PlayGame extends Component {
   }
 
   componentDidMount(){
-    this.fetchQAndA(200, false, auth.getToken()); //By default if we don't send the level param and the correct boolean and will start at the initial question
+    setTimeout( () => { return (this.fetchQAndA(200, false, auth.getToken()) )}, 2000);
+     //By default if we don't send the level param and the correct boolean and will start at the initial question
     this.timer = setInterval(() => {
       if (this.state.isPlayerCorrect === undefined) {
         this.setState({
@@ -117,6 +120,11 @@ export default class PlayGame extends Component {
   }
 
   render(){
+    if (this.state.loading){
+      return (
+        <div className="loading-div">LOADING!</div>
+      )
+    }
     return(
       <div>
         <div className="scoreboard-container">
