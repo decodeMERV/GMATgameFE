@@ -20,7 +20,7 @@ export default class LeaderBoard extends Component {
     api.getLeader()
       .then(res => {
         this.setState({leaders: this.state.leaders.concat(res.body)})
-
+        console.log("leaders",this.state.leaders)
       })
       .catch(error => {
         this.setState({
@@ -40,7 +40,7 @@ export default class LeaderBoard extends Component {
 
             <tbody>
             <tr>
-              <th>User</th>
+              <th colSpan="2">User</th>
               <th>Total Score</th>
               <th>Games Played</th>
               <th>Total Minutes</th>
@@ -49,6 +49,7 @@ export default class LeaderBoard extends Component {
 
             {this.state.leaders.map((item) => (
               <tr key={item.user}>
+                <td><img className="picture" src={`https://www.gravatar.com/avatar/${item.gravatar}?d=mm`} alt="userimage"/></td>
                 <td className="col1">{item.user}</td>
                 <td className="col">{item.total}</td>
                 <td className="col">{item.cnt}</td>
