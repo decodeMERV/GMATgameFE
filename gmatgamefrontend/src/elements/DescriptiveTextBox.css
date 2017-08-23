@@ -1,13 +1,10 @@
-/*@import url('https://fonts.googleapis.com/css?family=Anton');
-*/
+
 
 .textbox {
+  font-family: 'Nunito', sans-serif;
   display: inline-block;
   color:#444444;
-  /*border: white 1px solid;*/
-  /*border-radius: 1px;*/
-  padding: 1rem;
+  padding: 0rem 0.5rem 0rem 0.5rem;
   text-align: center;
-  /*color: black;*/
   cursor: pointer;
 }
