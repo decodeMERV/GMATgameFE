@@ -4,35 +4,28 @@ body {
     background-color: #eeeef2;
 }
 
-/*table, th, td {*/
 
+
+
+.lbh1 {
+    font-size: larger;
+    font-style: italic;
+    padding-top:1rem;
     font-family: 'Nunito', sans-serif;
     margin:auto;
     text-align: center;
-    color: #444444;
-    background-color: white;
 
-
-p {
-    font-color:#444444;
-    /*font-size: larger;*/
-    /*font-style: italic;*/
-    /*padding-top:1rem;*/
-    font-family: 'Nunito', sans-serif;
-    margin:auto;
-    text-align: center;
 }
 
-tr:hover {
-  background-color: #f5f5f5;
-}
 
 .rwd-table{
-  margin-top: 1rem;
+
+
+
 }
 
-.LB {
-  overflow-x:auto;
+
+th {
 }
 
 h1 {
@@ -40,26 +33,42 @@ h1 {
     font-family: 'Nunito', sans-serif;
     padding: 10px 0px 10px 0px;
     text-align: center;
-    /*color:#b1bdcc;*/
     color:white;
     background-color: #2b2b2b;
-    /*background-color: #33d87a;*/
+}
+
+
+
+.lbtab {
+
+    padding-top: 3rem;
 }
 
 .col1{
-  text-align: left;
-  padding: 0.75rem;
+    text-align: left;
+    padding: 0.75rem;
+
 }
 
-.col2 {
-  text-align: center;
-  padding: 0.75rem;
+.col2{
+    text-align: center;
+    padding: 0.75rem;
+
+}
+.col3{
+    text-align: center;
+    padding: 0.75rem;
+
 }
 
-.col3 {
-  text-align: center;
-  padding: 0.75rem;
-}
+/*th {*/
+/*padding: 1rem;*/
+/*background-color: #1ed760;*/
+/*}*/
+
+/*td {*/
+
+/*}*/
 
 table {
     border-collapse:separate;

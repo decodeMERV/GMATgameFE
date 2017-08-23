@@ -32,10 +32,10 @@ export default class LeaderBoard extends Component {
 
   render() {
     return (
-      <div className="LB">
-        <h1> Hall of Fame </h1>
-        {/*<p> Can you make it to our hall of fame?</p>*/}
-          <table className="rwd-table">
+      <div>
+      <h1 className="lbh"> Hall of Fame </h1>
+      <div className="lbtab">
+          <table>
 
 
             <tbody>
@@ -57,6 +57,8 @@ export default class LeaderBoard extends Component {
             </tbody>
           </table>
       </div>
+      </div>
+
     );
   }
 }
