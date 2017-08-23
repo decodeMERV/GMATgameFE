@@ -43,14 +43,16 @@ export default class LeaderBoard extends Component {
               <th>User</th>
               <th>Total Score</th>
               <th>Games Played</th>
+              <th>Total Minutes</th>
 
             </tr>
 
             {this.state.leaders.map((item) => (
               <tr key={item.user}>
                 <td className="col1">{item.user}</td>
-                <td className="col2">{item.total}</td>
-                <td className="col3">{item.cnt}</td>
+                <td className="col">{item.total}</td>
+                <td className="col">{item.cnt}</td>
+                <td className="col">{item.time}</td>
               </tr>
             ))}
 

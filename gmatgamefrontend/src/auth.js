@@ -2,13 +2,8 @@ import api from './api';
 
 export default {
   login(email, pass) {
-    // if (localStorage.token) {
-    //   throw new Error('Already logged in')
-    // }
-    // else {
       return api.requestLogin(email, pass)
         .then(res => localStorage.token = res.body.token)
-   // }
   },
 
   getToken() {

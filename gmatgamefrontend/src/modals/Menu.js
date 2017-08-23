@@ -24,7 +24,8 @@ class Menu extends Component {
   }
 
   _handleLogout = () =>{
-    console.log("KEK")
+
+
     auth.logout()
     .then((res => this.props.router.push('/')))
     .catch( error => alert("Could not log you out, " + error) )
