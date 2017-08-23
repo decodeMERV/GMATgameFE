@@ -20,7 +20,11 @@ const routes = (
           replace("/dashboard");
         }
       }}/>
-      <Route path="play" component={PlayGame}/>
+      <Route path="play" component={PlayGame} onEnter={(nextState, replace) => {
+        if (!auth.isLoggedIn()){
+          replace("/");
+        }
+      }}/>
       <Route path="signup" component={SignUp}/>
       <Route path="leaders" component={LeaderBoard}/>
       <Route path="dashboard" component={UserProfile} onEnter={(nextState, replace)=>{
