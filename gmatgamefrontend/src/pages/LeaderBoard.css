@@ -4,24 +4,13 @@ body {
     background-color: #eeeef2;
 }
 
-/*table, th, td {*/
-
-font-family: 'Nunito', sans-serif;
-margin:auto;
-text-align: center;
-color: #444444;
-background-color: white;
 
 
 
-/*}*/
-
-
-p {
-    font-color:#444444;
-    /*font-size: larger;*/
-    /*font-style: italic;*/
-    /*padding-top:1rem;*/
+.lbh1 {
+    font-size: larger;
+    font-style: italic;
+    padding-top:1rem;
     font-family: 'Nunito', sans-serif;
     margin:auto;
     text-align: center;
@@ -31,12 +20,10 @@ p {
 
 .rwd-table{
 
-    margin-top: 1rem;
+
 
 }
-.LB {
-    overflow-x:auto;
-}
+
 
 th {
 }
@@ -46,19 +33,16 @@ h1 {
     font-family: 'Nunito', sans-serif;
     padding: 10px 0px 10px 0px;
     text-align: center;
-    /*color:#b1bdcc;*/
     color:white;
     background-color: #2b2b2b;
-    /*background-color: #33d87a;*/
 }
 
-/*table {*/
-/*border-collapse: collapse;*/
 
-/*border: solid 0.1rem #33d87a;*/
-/*border-radius: 25px;*/
 
-/*}*/
+.lbtab {
+
+    padding-top: 3rem;
+}
 
 .col1{
     text-align: left;

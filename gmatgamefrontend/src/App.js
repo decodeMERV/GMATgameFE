@@ -73,7 +73,7 @@ class App extends Component {
           <Link to="/" className="App-navbar__title">
 
             <div className="gmatimage">
-              <img src={require("./gmax_logo_v2.svg")} width="160px" height="100px"/>
+              <img src={require("./gmax_logo_v2.svg")} width="160px" height="100px" alt="gmatlogo"/>
             </div>
           </Link>
 
@@ -89,10 +89,10 @@ class App extends Component {
         }
         </div>
 
-        <div className="background-overlay">
+
           {React.cloneElement(this.props.children, {loggedInProp :this.props.loggedIn, username : this.state.username } )}
       </div>
-      </div>
+
     );
   }
 }
