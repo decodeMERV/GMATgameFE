@@ -33,7 +33,7 @@ export default class LeaderBoard extends Component {
   render() {
     return (
       <div>
-      <h1 className="lbh"> Hall of Fame </h1>
+      <h1 className="lbh"> Stats </h1>
       <div className="lbtab">
           <table>
 
