@@ -1,6 +1,5 @@
 
 .profile-container{
-
     margin: auto;
     display: flex;
     flex-direction: column;
@@ -9,44 +8,43 @@
     align-items: center;
     line-height: 1.5px;
 }
-
-h2 {
-    font-size: 1.8rem;
-    font-weight: bold;
-    margin-bottom: 0.25em;
-}
-
-h4{
-    font-size: 1.5rem;
-}
-
-.profilefield:last-of-type {
-    margin-bottom: 3rem;
-}
-
 .profilebox {
-
     font-family: 'Nunito', sans-serif;
     overflow-wrap: break-word;
     padding: 1rem 5rem 1rem 5rem;
     border: solid 0.1rem #33d87a;
-    width:auto;
-    height:auto;
+    min-width: 45vw;
+    max-width: 50vw;
     border-radius: 25px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     text-align: center;
 }
+h2 {
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-bottom: 0.25em;
+}
+h4{
+    font-size: 1.5rem;
+}
+.profilefield{
+    margin-top: 5%;
+}
+.profilefield:first-of-type {
+    margin-top:10%
+}
+.profilefield:last-of-type {
+    margin-bottom: 1rem;
+}
+
 input[type=text]:focus{
     background-color: #fff494;
 }
 
 input[type=password]:focus{
     background-color: #fff494;
-}
-.cancel-button{
-    background-color: #ff3333;
 }
 
 button{
@@ -58,12 +56,43 @@ button{
     border: none;
     font-size: larger;
     margin: 2%;
+    min-width: 4vh;
 }
-
-.profilefield{
-    margin-top: 5%;
+button:hover{
+    background-color: #11af42;
 }
-
-.profilefield:first-of-type {
-    margin-top:10%
+.cancel-button{
+    background-color: #ff3333 ;
+    border-radius: 4px;
+    padding: 5% 5% 10% 5%;
+    min-width: 10%;
+    border: none;
+    font-size: larger;
+    margin-bottom: 5%;
+    max-height: 3vh;
+    display: flex;
+    align-items: center;
+    justify-content: center
+}
+button.cancel-button:hover{
+  background-color: #f44242;
+}
+.done-button{
+    color: white;
+    background-color: #1ed760;
+    border-radius: 4px;
+    padding: 2% 8% 8% 8%;
+    min-width: 10%;
+    border: none;
+    font-size: larger;
+    max-height: 3vh;
+    display: flex;
+    align-items: center;
+    justify-content: center
+}
+.done-button:hover{
+    background-color: #11af42;
+}
+.done-button:hover{
+    background-color: #11af42;
 }

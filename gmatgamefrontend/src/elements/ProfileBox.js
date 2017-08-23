@@ -25,7 +25,7 @@ export default (props) => {
       </div>
         {props.editOpen === false ? <button onClick={(e) => props.openingEdit(e)}> <EditButton/> </button> : null }
         {props.editOpen === true ?  <button className='cancel-button' onClick={props.closingEdit}> <CancelButton/> </button>: null}
-        {props.editOpen === true ? <button name="done" onClick={props.closingEdit}> <DoneButton/> </button> : null}
+        {props.editOpen === true ? <button className="_done-button" onClick={props.closingEdit}> <DoneButton/> </button> : null}
     </div>
   )
 }
