@@ -131,13 +131,13 @@ export default class AdminDashboard extends Component {
           :
           null}
 
-        <h1>Insert Question & Answer Choices</h1>
+        <h1 className="adminh">Insert Question & Answer Choices</h1>
         <input ref="title" type="text" onKeyUp={this.handleUserInput} placeholder={"Question"}/>
         {MultipleChoiceOptions.map( (letter) => {
           return <input type="text" onKeyUp={this.handleUserInput} placeholder={"Answer" + letter} ref={"answer"+letter} key={letter}/>
         })}
 
-        <h1>Insert Correct Answer, Category, Levels</h1>
+        <h1 className="adminh">Insert Correct Answer, Category, Levels</h1>
           <Dropdown innerRef={ (ele) => {this.createQuesEle.correctAnswer = ele} } onChange={this.handleUserInput} passedArray={MultipleChoiceOptions} useItemValueOrIndex={true} textBefore={"Answer "} showItem={true} textAfter={false}/>
           <Dropdown innerRef={ (ele) => {this.createQuesEle.level = ele} } onChange={this.handleUserInput} passedArray={GMATLevels} useItemValueOrIndex={true} textBefore={"Level "} showItem={true} textAfter={false}/>
           <Dropdown innerRef={ (ele) => {this.createQuesEle.categoryId = ele} } onChange={this.handleUserInput} passedArray={GMATCategories} useItemValueOrIndex={false} textBefore={false} showItem={true} textAfter={false}/>
@@ -145,7 +145,7 @@ export default class AdminDashboard extends Component {
             <button className="create-button" onClick={this.processCreateQuestion}>Create</button>
           </div>
 
-        <h1>Show Questions</h1>
+        <h1 className="adminh">Show Questions</h1>
 
           <Dropdown innerRef={ (ele) => {this.showRowsEle.levelShowQuestions = ele} } onChange={this.showDiffQuestions} passedArray={GMATLevels} useItemValueOrIndex={true} textBefore={"Level "} showItem={true} textAfter={false}>
           <option>Level</option>
@@ -176,13 +176,13 @@ export default class AdminDashboard extends Component {
                 </tr>
                 {this.state.arrayQues.map((question, i) => {
                   return (
-                    <tr key={question.id}>
-                      <td>{question.id}</td>
-                      <td>{question.title.substring(0, 21)}
+                    <tr className="yxxx" key={question.id}>
+                      <td className="yxxx">{question.id}</td>
+                      <td className="col4">{question.title.substring(0, 21)}
                           {question.title.length > 20 ? "..." : null}</td>
-                      <td>{question.categoryName} </td>
-                      <td>{question.level} </td>
-                      <td> <DeleteButton onClick={this.deleteQuestion(question.id, i)}/> </td>
+                      <td className="yxxx">{question.categoryName} </td>
+                      <td className="yxxx">{question.level} </td>
+                      <td className="yxxx"> <DeleteButton onClick={this.deleteQuestion(question.id, i)}/> </td>
                     </tr>)
                 })}
               </tbody>

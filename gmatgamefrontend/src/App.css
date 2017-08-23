@@ -16,12 +16,10 @@ table, caption, tbody, tfoot, thead, tr, th, td, header {
   font-style: inherit;
   font-size: 100%;
   font-family: inherit;
-  vertical-align: baseline;
   line-height: normal;
-  /*min-width: 70%;*/
   text-decoration: none;
 }
-/* remember to define focus styles! */
+
 :focus {
   outline: 0;
 }
@@ -35,29 +33,8 @@ body {
 }
 
 .gmatimage {
-
   padding-left: 20px;
 }
-
-/*.background-overlay {*/
-/*height: 100vh;*/
-/*width: 100vw;*/
-/*background-color: #f2f2f2;*/
-
-/*display: -ms-flexbox;*/
-/*display: flex;*/
-/*-ms-flex-flow: column;*/
-/*flex-flow: column;*/
-/*-ms-flex-pack: center;*/
-/*-ms-flex-align: center;*/
-
-/*background: rgba(43, 43, 43, 0.84);*/
-
-/*}*/
-
-/*.Logo {
-}*/
-
 
 .p-nav {
   color: white;
@@ -66,7 +43,7 @@ body {
 ol, ul {
   list-style: none;
 }
-/* tables still need 'cellspacing="0"' in the markup */
+
 table {
   border-collapse: separate;
   border-spacing: 0;
@@ -94,11 +71,6 @@ blockquote, q {
   padding: 1em;
 }
 
-/*img {*/
-/*display: block;*/
-/*margin: 0 auto;*/
-/*}*/
-
 
 
 .play-button{
@@ -110,27 +82,16 @@ blockquote, q {
   padding: 10px;
 }
 
-/*.App-navbar__title {*/
-/*margin: 0;*/
-/*color: rgba(255,255,255,0.9);*/
-/*font-size: 1.5rem;*/
-/*text-decoration: none;*/
-/*}*/
 
 .login {
   display: flex;
   -ms-flex-direction: column;
   flex-direction: column;
-  /*border: solid 0.1rem #00BCD4;*/
   border-radius: 25px;
   padding: 2rem;
   margin: 20% 0 20% 20%;
   max-width: 50%;
   min-width: 50%;
-  /* background-color: white; */
-}
-
-
-.nav-dashboard {
 
 }
+

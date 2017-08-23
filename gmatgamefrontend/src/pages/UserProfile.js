@@ -81,12 +81,16 @@ export default class UserProfile extends Component {
    render(){
 
     return (
-      <div className="profile-container">
-        <ProfileBox name={this.state.username} contact={this.state.email} aboutMe={this.state.interests}
-        openingEdit={this.openingEdit} editOpen={this.state.editOpen} onChange={this.onChangedValue}
-         closingEdit={this.closingEdit} closeEdit={this.state.closeEdit}/>
-        {this.state.admin ?  <Link to="/patron" className="menu__item" onClick={this.props.onNavigate}> Admin </Link> : null}
-      </div>
+        <div>
+          <h1 className="lbh"> User Profile </h1>
+          <div className="profile-container">
+
+            <ProfileBox name={this.state.username} contact={this.state.email} aboutMe={this.state.interests}
+                        openingEdit={this.openingEdit} editOpen={this.state.editOpen} onChange={this.onChangedValue}
+                        closingEdit={this.closingEdit} closeEdit={this.state.closeEdit}/>
+              {this.state.admin ?  <Link to="/patron" className="menu__item" onClick={this.props.onNavigate}> Admin </Link> : null}
+          </div>
+        </div>
     );
   }
 }
