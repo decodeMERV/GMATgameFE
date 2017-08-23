@@ -31,5 +31,6 @@ export default {
   signUp(email, password, username, interests){
     return api.signUp(email, password, username, interests);
   }
+
 }
 

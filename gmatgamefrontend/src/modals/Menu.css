@@ -22,7 +22,7 @@
 }
 
 .fa-bars:hover {
-  color: #6acbf7;
+  color: #33d87a;
 }
 
 /*.menu {
@@ -72,15 +72,19 @@
 }
 
 .menu__item {
-  color: white;
-  text-decoration: none;
-  line-height: 2rem;
-  padding:25px 0;
+    font-family: 'Nunito', sans-serif;
+
+    margin-top: 0.5rem ;
+    padding:25px 0;
+    color:white;
+    text-decoration: none;
+    line-height: 2rem;
+
 }
 
 
 .menu__item:hover {
-  color: #4caf50;
+  color: #33d87a;
   text-decoration: none;
   line-height: 2rem;
   padding:25px 0;
