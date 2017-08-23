@@ -64,7 +64,6 @@ export default class PlayGame extends Component {
 
     if (this.state.correctAns === answer && this.state.isPlayerCorrect === undefined){
 
-      //console.log("this.props.username: ", this.props.username)
 
       this.setState({
         isPlayerCorrect : true,
@@ -93,15 +92,10 @@ export default class PlayGame extends Component {
     var time = this.state.timeElapsed;
 
 
-
-    console.log("TIME ", time)
-
-    //api.recordQuestion(this.props.username, this.state.ID, rw, this.state.cat, answer, this.state.level, pts)
       api.recordQuestion(username,questionId,isCorrect,category,answer,level,score,time, auth.getToken())
       .then(res => {console.log("res",res)})
       .catch(() => this.setState({theError: "Wrong database command"}))
-    console.log("all this chit: ", this.props.username, this.state.ID, this.state.cat, answer, this.state.level,this.state.timeElapsed)
-    console.log("all this cheet", username,questionId,isCorrect,category,answer,level,score,time);
+
   }
 
   colorChoices = (answersAtoE) => {
