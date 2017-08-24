@@ -18,10 +18,14 @@ export default class LoginHomePage extends Component {
     if (email && password && username) {
       auth.signUp(email, password, username, interests)
         .then(res => this.props.router.push('/'))
-        .catch(() => this.setState({theError: "Please correct your values above."}))
+        .catch((error) => {
+        console.log(error, "the error in SignUP.js")
+          window.error = error
+        this.setState({theError: "Note: " + error.response.body.message})
+      })
     }
     else {
-      this.setState({error: "Please complete the signup form"})
+      this.setState({theError: "Please include e-mail, password, and username in the signup form."})
     }
   }
 
