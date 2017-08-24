@@ -40,7 +40,8 @@ export default class LeaderBoard extends Component {
 
             <tbody>
             <tr>
-              <th colSpan="2">User</th>
+              <th colSpan="2" className="large">User</th>
+              <th colSpan="1" className="minview">User</th>
               <th>Total Score</th>
               <th>Games Played</th>
               <th>Total Minutes</th>
@@ -49,7 +50,7 @@ export default class LeaderBoard extends Component {
 
             {this.state.leaders.map((item) => (
               <tr key={item.user}>
-                <td><img className="picture" src={`https://www.gravatar.com/avatar/${item.gravatar}?d=mm`} alt="userimage"/></td>
+                <td className="piccol"><img className="picture" src={`https://www.gravatar.com/avatar/${item.gravatar}?d=mm`} alt="userimage"/></td>
                 <td className="col1">{item.user}</td>
                 <td className="col">{item.total}</td>
                 <td className="col">{item.cnt}</td>
