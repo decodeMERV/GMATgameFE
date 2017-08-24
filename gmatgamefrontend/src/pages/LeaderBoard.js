@@ -20,11 +20,10 @@ export default class LeaderBoard extends Component {
     api.getLeader()
       .then(res => {
         this.setState({leaders: this.state.leaders.concat(res.body)})
-        console.log("leaders",this.state.leaders)
       })
       .catch(error => {
         this.setState({
-          Q: "Error loading leaders: " + error
+          theError: "Error loading leaders: " + error
         })
       })
   }
@@ -60,6 +59,7 @@ export default class LeaderBoard extends Component {
 
             </tbody>
           </table>
+        <h3>{this.state.theError}</h3>
       </div>
       </div>
 

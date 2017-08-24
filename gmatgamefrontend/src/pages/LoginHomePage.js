@@ -17,10 +17,10 @@ export default class LoginHomePage extends Component {
     if (email && password) {
       auth.login(email, password)
         .then(res => this.props.router.push('/play'))
-        .catch( () => this.setState({theError : "Wrong username or password"}) )
+        .catch( (error) => this.setState({theError : error+ " - Wrong username or password"}) )
     }
     else {
-      this.setState({ error: "Please enter an email and password"})
+      this.setState({ theError: "Please enter an email and password"})
     }
   }
 
