@@ -45,7 +45,7 @@ export default class AdminDashboard extends Component {
       }
 
       if (!this.refs[ref].value) { //Check if form is empty
-        this.setState({error: "Fill in the form!"});
+        this.setState({error: "Please fill in the form!"});
         return;
       }
     }
@@ -123,11 +123,11 @@ export default class AdminDashboard extends Component {
     return (
       <div className="admin-container">
         {(this.state.successMSG !== null) ?
-          <DescriptiveTextBox theText={this.state.successMSG} bgColor="green"/>
+          <DescriptiveTextBox theText={this.state.successMSG} bgColor="none"/>
           :
           null}
         {(this.state.error !== null) ?
-          <DescriptiveTextBox theText={this.state.error} bgColor="red"/>
+          <DescriptiveTextBox theText={this.state.error} bgColor="none"/>
           :
           null}
 
@@ -145,7 +145,7 @@ export default class AdminDashboard extends Component {
             <button className="create-button" onClick={this.processCreateQuestion}>Create</button>
           </div>
 
-        <h1 className="adminh">Show Questions</h1>
+        <h1 className="admin">Show Questions</h1>
 
           <Dropdown innerRef={ (ele) => {this.showRowsEle.levelShowQuestions = ele} } onChange={this.showDiffQuestions} passedArray={GMATLevels} useItemValueOrIndex={true} textBefore={"Level "} showItem={true} textAfter={false}>
           <option>Level</option>
