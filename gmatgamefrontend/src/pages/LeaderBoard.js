@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import './LeaderBoard.css';
 import api from '../api.js';
 
+
 export default class LeaderBoard extends Component {
   constructor() {
     super();
@@ -30,7 +31,11 @@ export default class LeaderBoard extends Component {
   }
 
 
+
   render() {
+
+
+
     return (
       <div>
       <h1 className="lbh"> Stats </h1>
@@ -63,4 +68,9 @@ export default class LeaderBoard extends Component {
 
     );
   }
+
+
+
+
+
 }
