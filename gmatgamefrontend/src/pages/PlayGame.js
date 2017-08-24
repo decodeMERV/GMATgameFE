@@ -6,6 +6,7 @@ import Answer from '../elements/Answer';
 import api from '../api';
 import Timer from '../elements/Timer';
 import auth from '../auth';
+import Spinner from '../elements/Spinner.js';
 
 
 export default class PlayGame extends Component {
@@ -48,7 +49,7 @@ export default class PlayGame extends Component {
   }
 
   componentDidMount(){
-    setTimeout( () => { return (this.fetchQAndA(200, false, auth.getToken()) )}, 2000);
+    setTimeout( () => { return (this.fetchQAndA(200, false, auth.getToken()) )}, 750);
      //By default if we don't send the level param and the correct boolean and will start at the initial question
     this.timer = setInterval(() => {
       if (this.state.isPlayerCorrect === undefined) {
@@ -122,7 +123,9 @@ export default class PlayGame extends Component {
   render(){
     if (this.state.loading){
       return (
-        <div className="loading-div">LOADING!</div>
+        <div className="loading-div">
+          <Spinner />
+        </div>
       )
     }
     return(
